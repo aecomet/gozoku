@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     for (let i = 0; i < GOZOKU_TEXT.length; i++) {
       kingText.innerHTML = GOZOKU_TEXT[i];
       await util.playSound(SE);
-      if (!isMobile) {
-        await util.sleep(200);
-      }
+      // if (!isMobile) {
+      await util.sleep(210);
+      // }
     }
     // 全文表示
     kingText.innerHTML = GOZOKU_TEXT;

@@ -43,6 +43,7 @@ body {
   background-color: #fcfcfc;
   box-shadow: 0 0 20px #fcfcfc;
   cursor: pointer;
+  color: #000;
 }
 
 #gozoku-btn::before,
