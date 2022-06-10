@@ -22,13 +22,13 @@ body {
 }
 
 #gozoku-alert {
-  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 #gozoku-alert p {
+  padding: 16px;
   font-size: 70px;
 }
 #gozoku-btn {
