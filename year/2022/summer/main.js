@@ -49,17 +49,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     playSound: async (key) => {
       audio[key].bufferNode.start(0);
       audio[key].prepare();
-    },
-    isMobile: () => {
-      // デバイス幅が640px以下の場合にスマホと判定する
-      return !(window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches);
     }
   };
 
   const gozokuNote = document.getElementById('gozoku-note');
   const gozokuBtn = document.getElementById('gozoku-btn');
   const kingText = document.getElementById('king-text');
-  const isMobile = util.isMobile();
 
   gozokuBtn.addEventListener('click', async () => {
     gozokuNote.classList.add('hidden');
@@ -70,9 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     for (let i = 0; i < GOZOKU_TEXT.length; i++) {
       kingText.innerHTML = GOZOKU_TEXT[i];
       await util.playSound('se');
-      if (!isMobile) {
-        await util.sleep(210);
-      }
+      await util.sleep(210);
     }
     // 全文表示
     kingText.innerHTML = GOZOKU_TEXT;
