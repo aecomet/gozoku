@@ -6,6 +6,7 @@ body {
   height: 100vh;
   height: -webkit-fill-available;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 #gozoku-summer {
