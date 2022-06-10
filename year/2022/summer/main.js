@@ -1,4 +1,4 @@
-let isStart = false;
+// let isStart = false;
 
 // if ('connection' in navigator) {
 //   if (navigator.connection.type != 'cellular') {
@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const BGM = './mp3/bgm.mp3';
   const audio = new Audio();
 
-  if (!isStart) {
-    alert('Wifi環境下でページを開いてください。');
-    return;
-  }
+  // if (!isStart) {
+  //   alert('Wifi環境下でページを開いてください。');
+  //   return;
+  // }
 
   // 200ミリ秒待つ
   const util = {
