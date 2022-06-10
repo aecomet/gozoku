@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     kingText.innerHTML = GOZOKU_TEXT;
     kingText.classList.remove('single-word');
     kingText.classList.add('all-words');
+    await util.sleep(200);
     await util.playSound('bgm');
   });
 });
