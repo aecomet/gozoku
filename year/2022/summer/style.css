@@ -72,12 +72,14 @@ body {
 #king-text.single-word {
   font-size: 200px;
   font-style: italic;
+  padding: 8px;
 }
 
 #king-text.all-words {
   font-size: 150px;
   font-weight: bold;
   font-style: italic;
+  padding: 8px;
 }
 
 .hidden {

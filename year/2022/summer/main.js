@@ -8,58 +8,59 @@ document.addEventListener('DOMContentLoaded', async () => {
     bgm: {
       context: new AudioContext(),
       buffer: null,
-      bufferNode: null,
-      init: async () => {
-        const bgmResponse = await fetch(BGM);
-        const bgmArrayBuffer = await bgmResponse.arrayBuffer();
-        audio.bgm.buffer = await audio.bgm.context.decodeAudioData(bgmArrayBuffer);
-        await audio.bgm.prepare();
-      },
-      prepare: async () => {
-        audio.bgm.bufferNode = await audio.bgm.context.createBufferSource();
-        audio.bgm.bufferNode.buffer = audio.bgm.buffer;
-        audio.bgm.bufferNode.connect(audio.bgm.context.destination);
-      }
+      bufferNode: null
     },
     se: {
       context: new AudioContext(),
       buffer: null,
-      bufferNode: null,
-      init: async () => {
-        const seResponse = await fetch(SE);
-        const seArrayBuffer = await seResponse.arrayBuffer();
-        audio.se.buffer = await audio.se.context.decodeAudioData(seArrayBuffer);
-        await audio.se.prepare();
-      },
-      prepare: async () => {
-        audio.se.bufferNode = await audio.se.context.createBufferSource();
-        audio.se.bufferNode.buffer = audio.se.buffer;
-        audio.se.bufferNode.connect(audio.se.context.destination);
-      }
+      bufferNode: null
+    },
+    init: async (key, music) => {
+      const response = await fetch(music);
+      const arrayBuffer = await response.arrayBuffer();
+      audio[key].buffer = await audio[key].context.decodeAudioData(arrayBuffer);
+      await audio.prepare(key);
+    },
+    prepare: async (key, volume = 1.0) => {
+      audio[key].bufferNode = await audio[key].context.createBufferSource();
+      audio[key].bufferNode.buffer = audio[key].buffer;
+
+      const gainNode = await audio[key].context.createGain();
+      gainNode.gain.setValueAtTime(volume, audio[key].context.currentTime);
+
+      audio[key].bufferNode.connect(gainNode);
+      gainNode.connect(audio[key].context.destination);
     }
   };
 
-  await audio.bgm.init();
-  await audio.se.init();
+  await audio.init('bgm', BGM);
+  await audio.init('se', SE);
 
   const util = {
     sleep: (timeout = 200) => {
       return new Promise((resolve) => setTimeout(resolve, timeout));
     },
+    playMute: async (key) => {
+      await audio.prepare(key, 0);
+      await audio[key].bufferNode.start(0);
+      await audio.prepare(key);
+    },
     playSound: async (key) => {
-      audio[key].bufferNode.start(0);
-      audio[key].prepare();
+      await audio[key].bufferNode.start(0);
+      await audio.prepare(key);
     }
   };
 
-  const gozokuNote = document.getElementById('gozoku-note');
+  const gozokuAlert = document.getElementById('gozoku-alert');
   const gozokuBtn = document.getElementById('gozoku-btn');
   const kingText = document.getElementById('king-text');
 
   gozokuBtn.addEventListener('click', async () => {
-    gozokuNote.classList.add('hidden');
-    gozokuBtn.classList.add('hidden');
+    gozokuAlert.remove();
+
     kingText.classList.add('single-word');
+    await util.playMute('bgm');
+    await util.playMute('se');
 
     // 音とともに一文字ずつ表示
     for (let i = 0; i < GOZOKU_TEXT.length; i++) {
@@ -71,7 +72,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     kingText.innerHTML = GOZOKU_TEXT;
     kingText.classList.remove('single-word');
     kingText.classList.add('all-words');
-    await util.sleep(200);
     await util.playSound('bgm');
   });
 });
