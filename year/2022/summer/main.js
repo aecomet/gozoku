@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const GOZOKU_TEXT = '2022年夏の豪族回、今年も開幕決定!';
+  const GOZOKU_TEXT = '夏の豪族回、今年も開幕決定!';
   // audio
   const SE = './mp3/se.mp3';
   const BGM = './mp3/bgm.mp3';
