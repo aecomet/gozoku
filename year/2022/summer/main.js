@@ -1,8 +1,20 @@
+let isStart = false;
+
+if ('connection' in navigator) {
+  if (navigator.connection.type != 'cellular') {
+    isStart = true;
+  }
+}
 document.addEventListener('DOMContentLoaded', async () => {
   const GOZOKU_TEXT = '2022年夏の豪族回、今年も開幕決定!';
   const SE = './mp3/se.mp3';
   const BGM = './mp3/bgm.mp3';
   const audio = new Audio();
+
+  if (!isStart) {
+    alert('Wifi環境下でページを開いてください。');
+    return;
+  }
 
   // 200ミリ秒待つ
   const util = {
@@ -12,6 +24,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     playSound: async (filename) => {
       audio.src = filename;
       await audio.play();
+    },
+    isMobile: async () => {
+      // デバイス幅が640px以下の場合にスマホと判定する
+      return window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches;
     }
   };
 
@@ -30,7 +46,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     for (let i = 0; i < GOZOKU_TEXT.length; i++) {
       kingText.innerHTML = GOZOKU_TEXT[i];
       await util.playSound(SE);
-      await util.sleep(200);
+      if (!isMobile) {
+        await util.sleep(200);
+      }
     }
     // 全文表示
     kingText.innerHTML = GOZOKU_TEXT;
