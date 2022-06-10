@@ -1,10 +1,10 @@
 let isStart = false;
 
-if ('connection' in navigator) {
-  if (navigator.connection.type != 'cellular') {
-    isStart = true;
-  }
-}
+// if ('connection' in navigator) {
+//   if (navigator.connection.type != 'cellular') {
+//     isStart = true;
+//   }
+// }
 document.addEventListener('DOMContentLoaded', async () => {
   const GOZOKU_TEXT = '2022年夏の豪族回、今年も開幕決定!';
   const SE = './mp3/se.mp3';
