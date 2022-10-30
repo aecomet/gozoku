@@ -1,5 +1,7 @@
 Powered by Power Director.
+
 Special Thanks: Stores in Hitachi City.
+
 Credit: https://www.youtube.com/watch?v=35k730kNiqg&t=36s
 
 ## 注意事項
