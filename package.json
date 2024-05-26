@@ -1,12 +1,12 @@
 {
   "name": "gozoku",
   "version": "1.0.0",
-  "description": "",
+  "description": "Gozoku is the strongest man Ibaraki Prefecture in Japan",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ng serve"
   },
   "author": "aecomet",
-  "license": "APL2",
+  "license": "MIT",
   "dependencies": {
     "@angular/animations": "^18.0.0",
     "@angular/common": "^18.0.0",
