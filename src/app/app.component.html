@@ -1,9 +1,15 @@
 <app-toolbar></app-toolbar>
 
-<a routerLink="home" routerLinkActive="active-page" ariaCurrentWhenActive="page">Home</a>
-<a routerLink="sample" routerLinkActive="active-page" ariaCurrentWhenActive="page">Sample</a>
-<a routerLink="hoge" routerLinkActive="active-page" ariaCurrentWhenActive="page">Not Found</a>
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+  @for(link of links; track link) {
+  <a mat-tab-link (click)="navClick(link)" [active]="isActiveLink(link)">
+    {{ link.label }}
+  </a>
+  }
+</nav>
 
-<router-outlet />
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet />
+</mat-tab-nav-panel>
 
 <footer>&copy; aecomet</footer>
