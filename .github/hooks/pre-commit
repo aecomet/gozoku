@@ -1,0 +1,49 @@
+# ===== Git PreCommit Hooks =====
+# This file is liked from `.git/hooks/pre-commit`
+# ===============================
+
+# find diff filename
+# --cached: staging files after git add
+# --name-only: show filename only
+diff=$(git diff --cached --name-only)
+targetFiles=""
+
+echo "Checking files..."
+while read -r file; do
+  ext="${file##*.}"
+
+  result=$(less $file | grep -e "console.log")
+
+  if [[ $file == "^.github+" ]] && [[ -n "${result}" ]]; then
+    echo "detect 'console.log' in ${file}"
+    exit 1
+  fi
+
+  if [[ "${ext}" == "ts" ]] || [[ "${ext}" == "vue" ]]; then
+    targetFiles="$targetFiles $file"
+  fi
+done <<<"$diff"
+
+echo $targetFiles
+
+if [[ -n "$targetFiles" ]]; then
+  # check prettier
+  pnpx prettier $targetFiles --check --config ./prettier.config.js
+  prettierStatus=$?
+
+  if [[ $prettierStatus != 0 ]]; then
+    exit 1
+  fi
+
+  # check eslint
+  echo "Checking linting..."
+  ESLINT_USE_FLAT_CONFIG=true pnpx eslint -c ./eslint.config.mjs --no-ignore $targetFiles
+  eslintStatus=$?
+
+  if [[ $eslintStatus != 0 ]]; then
+    exit 1
+  fi
+  echo "All matched files pass lint rule!"
+fi
+
+exit 0
