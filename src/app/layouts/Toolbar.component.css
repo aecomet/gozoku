@@ -1,3 +1,3 @@
-.toolbar-spacer {
-  flex: 1 1 auto;
+.gozoku-toolbar {
+  justify-content: center;
 }

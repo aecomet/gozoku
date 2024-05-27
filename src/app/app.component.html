@@ -1,6 +1,6 @@
 <app-toolbar></app-toolbar>
 
-<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" mat-stretch-tabs="false" mat-align-tabs="center">
   @for(link of links; track link) {
   <a mat-tab-link (click)="navClick(link)" [active]="isActiveLink(link)">
     {{ link.label }}
@@ -12,4 +12,8 @@
   <router-outlet />
 </mat-tab-nav-panel>
 
-<footer>&copy; aecomet</footer>
+<footer class="gozoku-footer">
+  <mat-card class="gozoku-flat-card">
+    <mat-card-content>&copy; aecomet</mat-card-content>
+  </mat-card>
+</footer>

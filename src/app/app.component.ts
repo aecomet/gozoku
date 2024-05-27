@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AppToolbar } from '@src/app/layouts/Toolbar.component.ts';
 import { Link } from '@src/types/RouterLink.ts';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatSlideToggleModule, AppToolbar, MatTabsModule, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, MatSlideToggleModule, AppToolbar, MatTabsModule, RouterLink, RouterLinkActive, MatCardModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
