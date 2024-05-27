@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-schedule',
   standalone: true,
   templateUrl: './Schedule.component.html',
-  styleUrl: './Schedule.component.css'
+  styleUrl: './Schedule.component.scss'
 })
 export class AppSchedule {}

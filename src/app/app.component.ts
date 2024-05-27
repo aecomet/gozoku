@@ -11,7 +11,7 @@ import { Link } from '@src/types/RouterLink.ts';
   standalone: true,
   imports: [RouterOutlet, MatSlideToggleModule, AppToolbar, MatTabsModule, RouterLink, RouterLinkActive, MatCardModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   links: Link[] = [
