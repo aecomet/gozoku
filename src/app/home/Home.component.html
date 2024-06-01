@@ -1,5 +1,20 @@
-<h1>Hello World Home</h1>
+<div class="gozoku-flex">
+  <h3 class="gozoku-header">メンバー</h3>
 
-<mat-card>
-  <mat-card-content> Test1 </mat-card-content>
-</mat-card>
+  <div class="gozoku-flex">
+    @for(member of members; track member.id) {
+    <mat-card class="gozoku-member">
+      <mat-card-header>
+        <img mat-card-avatar [src]="member.imagePath" [alt]="'member-image-' + member.id" class="gozoku-member-image" />
+        <mat-card-title>{{ member.name }}</mat-card-title>
+        <mat-card-subtitle>{{ member.birth }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{ member.note }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+    }
+  </div>
+</div>

@@ -1,5 +1,9 @@
 <app-toolbar></app-toolbar>
 
+<mat-card>
+  <img mat-card-image src="gozoku_top.jpeg" alt="top-gozoku" class="gozoku-top-image" />
+</mat-card>
+
 <nav mat-tab-nav-bar [tabPanel]="tabPanel" mat-stretch-tabs="false" mat-align-tabs="center">
   @for(link of links; track link) {
   <a mat-tab-link (click)="navClick(link)" [active]="isActiveLink(link)">
@@ -8,9 +12,11 @@
   }
 </nav>
 
-<mat-tab-nav-panel #tabPanel>
-  <router-outlet />
-</mat-tab-nav-panel>
+<main>
+  <mat-tab-nav-panel #tabPanel>
+    <router-outlet />
+  </mat-tab-nav-panel>
+</main>
 
 <footer class="gozoku-footer">
   <mat-card class="gozoku-flat-card">

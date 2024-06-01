@@ -1,11 +1,18 @@
 .gozoku-footer {
   text-align: center;
   bottom: 0;
-  position: absolute;
+  position: relative;
   width: 100vw;
 }
 
 .gozoku-flat-card {
   border-radius: inherit;
   box-shadow: inherit;
+}
+
+.gozoku-top-image {
+  aspect-ratio: 16 / 9;
+  height: 350px;
+  object-fit: none;
+  filter: grayscale(80%);
 }

@@ -19,13 +19,18 @@ export class AppComponent {
       label: 'Home',
       path: '/'
     },
-    { label: '日程', path: '/schedule' }
+    { label: '開催履歴', path: '/schedule' }
   ];
-  activeLink: string = this.links[0].label;
+  activeLink: string = '';
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const activePath = this.links.find((link) => link.path === location.pathname);
+    this.activeLink = activePath === undefined ? this.links[0].label : activePath.label;
+
+    this.router.navigateByUrl(location.pathname);
+  }
 
   navClick(link: Link): void {
     this.activeLink = link.label;
