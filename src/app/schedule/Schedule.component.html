@@ -1,0 +1,20 @@
+<div class="gozoku-flex">
+  <h3 class="gozoku-header">開催履歴</h3>
+
+  <mat-grid-list cols="5" class="gozoku-flex">
+    @for(schedule of schedulesOrderByDateDesc(); track schedule.id) {
+    <mat-grid-tile>
+      <mat-card class="gozoku-schedule">
+        <mat-card-header>
+          <mat-card-title>{{ schedule.title }}</mat-card-title>
+          <mat-card-subtitle>{{ schedule.date }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ schedule.place }}
+          </p>
+        </mat-card-content>
+      </mat-card> </mat-grid-tile
+    >}
+  </mat-grid-list>
+</div>
