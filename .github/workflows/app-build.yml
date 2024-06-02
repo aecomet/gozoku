@@ -30,7 +30,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./dist/gozoku
+          publish_dir: ./dist/gozoku/browser
           publish_branch: main
           commit_message: 'App build(last commit: ${{ github.event.head_commit.message }})'
 
