@@ -5,8 +5,8 @@ import { AppLibrary } from '@src/app/library/Library.component.ts';
 import { AppSchedule } from '@src/app/schedule/Schedule.component.ts';
 
 export const routes: Routes = [
-  { path: '', component: AppHome },
-  { path: 'schedule', component: AppSchedule },
-  { path: 'library', component: AppLibrary },
-  { path: '**', component: PageNotFound }
+  { path: 'gozoku', component: AppHome },
+  { path: 'gozoku/schedule', component: AppSchedule },
+  { path: 'gozoku/library', component: AppLibrary },
+  { path: 'gozoku/**', component: PageNotFound }
 ];
