@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Gozoku is the strongest man Ibaraki Prefecture in Japan",
   "scripts": {
-    "dev": "ng serve"
+    "dev": "ng serve",
+    "build": "ng build"
   },
   "author": "aecomet",
   "license": "MIT",

@@ -19,7 +19,8 @@ export class AppComponent {
       label: 'Home',
       path: '/'
     },
-    { label: '開催履歴', path: '/schedule' }
+    { label: '開催履歴', path: '/schedule' },
+    { label: '遺産', path: '/library' }
   ];
   activeLink: string = '';
 
