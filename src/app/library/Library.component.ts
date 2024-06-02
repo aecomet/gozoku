@@ -16,13 +16,18 @@ export class AppLibrary {
 
   ngOnInit(): void {
     this.audioPlayer.init();
+
+    // video volume
+    const video: HTMLVideoElement | null = document.querySelector('.gozoku-winter video');
+    if (video === null) return;
+    video.volume = 0.1;
   }
 
   async onClickPlay() {
     if (this.buttonDisabled) return;
 
     this.buttonDisabled = true;
-    const kingText = document.getElementById('king-text');
+    const kingText: HTMLElement | null = document.querySelector('.king-text');
 
     if (kingText === null) return;
 
@@ -30,7 +35,7 @@ export class AppLibrary {
     kingText.classList.add('single-word');
 
     // 音とともに一文字ずつ表示
-    await this.audioPlayer.playSound('se', 0.7, true);
+    await this.audioPlayer.playSound('se', 0.3, true);
     for (let i = 0; i < this.GOZOKU_TEXT.length; i++) {
       kingText.innerHTML = this.GOZOKU_TEXT[i];
       await this.audioPlayer.sleep(300);
@@ -40,7 +45,7 @@ export class AppLibrary {
     kingText.innerHTML = this.GOZOKU_TEXT;
     kingText.classList.remove('single-word');
     kingText.classList.add('all-words');
-    await this.audioPlayer.playSound('bgm');
+    await this.audioPlayer.playSound('bgm', 0.3);
     await this.audioPlayer.stopSound('se');
     await this.audioPlayer.sleep(3500);
     this.buttonDisabled = false;

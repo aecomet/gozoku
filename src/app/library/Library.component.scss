@@ -1,24 +1,25 @@
 .gozoku-library {
   background: #888e98;
   padding: 8px;
+  margin: 32px 0;
 
   &:hover {
     opacity: 0.98;
   }
 
-  #gozoku-summer {
-    #gozoku-alert {
+  .gozoku-note {
+    padding: 16px;
+  }
+
+  .gozoku-summer {
+    .gozoku-alert {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
 
-    #gozoku-alert p {
-      padding: 16px;
-    }
-
-    #gozoku-btn {
+    .gozoku-btn {
       position: relative;
       border-radius: 50%;
       padding: 16px;
@@ -50,7 +51,8 @@
       }
     }
 
-    #king-text {
+    .king-text {
+      margin-top: 32px;
       text-align: center;
 
       &.single-word {
@@ -70,6 +72,17 @@
 
     .hidden {
       display: none !important;
+    }
+  }
+
+  .gozoku-winter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    video {
+      height: 240px;
     }
   }
 }
