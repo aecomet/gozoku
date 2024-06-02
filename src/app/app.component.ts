@@ -32,12 +32,12 @@ export class AppComponent {
 
     this.activeLink = activePath === undefined ? this.links[0].label : activePath.label;
 
-    this.router.navigateByUrl(`../${path}`);
+    this.router.navigateByUrl(path);
   }
 
   navClick(link: Link): void {
     this.activeLink = link.label;
-    this.router.navigateByUrl(`../${link.path}`);
+    this.router.navigateByUrl(link.path);
   }
 
   isActiveLink(link: Link): boolean {
