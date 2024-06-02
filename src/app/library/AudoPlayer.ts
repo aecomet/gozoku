@@ -4,14 +4,14 @@ export class AudioPlayer {
   private RESOURCE_PATHS: Resource[] = [
     {
       label: 'se',
-      path: '/year/2022/summer/mp3/se.mp3',
+      path: 'year/2022/summer/mp3/se.mp3',
       audio: new AudioContext(),
       audioSource: null,
       gainNode: null
     },
     {
       label: 'bgm',
-      path: '/year/2022/summer/mp3/bgm.mp3',
+      path: 'year/2022/summer/mp3/bgm.mp3',
       audio: new AudioContext(),
       audioSource: null,
       gainNode: null
