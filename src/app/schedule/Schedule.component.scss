@@ -1,11 +1,23 @@
 .gozoku-schedule {
-  width: 80%;
-  height: 200px;
-  background: #888e98;
-  position: relative;
-  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
-  &:hover {
-    opacity: 0.98;
+  .gozoku-schedule-card {
+    background: #888e98;
+    margin: 16px;
+    width: 20%;
+
+    &:hover {
+      opacity: 0.98;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .gozoku-schedule {
+    .gozoku-schedule-card {
+      width: 100%;
+    }
   }
 }
