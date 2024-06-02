@@ -17,10 +17,10 @@ export class AppComponent {
   links: Link[] = [
     {
       label: 'Home',
-      path: '/'
+      path: '/gozoku'
     },
-    { label: '開催履歴', path: '/schedule' },
-    { label: '遺産', path: '/library' }
+    { label: '開催履歴', path: '/gozoku/schedule' },
+    { label: '遺産', path: '/gozoku/library' }
   ];
   activeLink: string = '';
 
