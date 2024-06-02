@@ -17,25 +17,27 @@ export class AppComponent {
   links: Link[] = [
     {
       label: 'Home',
-      path: '/gozoku'
+      path: ''
     },
-    { label: '開催履歴', path: '/gozoku/schedule' },
-    { label: '遺産', path: '/gozoku/library' }
+    { label: '開催履歴', path: 'schedule' },
+    { label: '遺産', path: 'library' }
   ];
   activeLink: string = '';
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const activePath = this.links.find((link) => link.path === location.pathname);
+    const path = location.pathname.split('/gozoku/')[1];
+    const activePath = this.links.find((link) => link.path === path);
+
     this.activeLink = activePath === undefined ? this.links[0].label : activePath.label;
 
-    this.router.navigateByUrl(location.pathname);
+    this.router.navigateByUrl(`../${path}`);
   }
 
   navClick(link: Link): void {
     this.activeLink = link.label;
-    this.router.navigateByUrl(link.path);
+    this.router.navigateByUrl(`../${link.path}`);
   }
 
   isActiveLink(link: Link): boolean {
