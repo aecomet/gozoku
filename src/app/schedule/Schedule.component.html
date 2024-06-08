@@ -2,7 +2,7 @@
   <h3 class="gozoku-header">開催履歴</h3>
 
   <div class="gozoku-flex gozoku-schedule">
-    @for(schedule of schedulesOrderByDateDesc(); track schedule.id) {
+    @for(schedule of schedules; track schedule.id) {
     <mat-card class="gozoku-schedule-card">
       <mat-card-header>
         <mat-card-title>{{ schedule.title }}</mat-card-title>

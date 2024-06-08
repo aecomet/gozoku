@@ -13,30 +13,30 @@ export class AppHome {
   members: Member[] = [
     {
       id: 1,
-      name: '豪族',
+      name: 'Y.H',
       birth: '199x-xx-xx',
       note: '筆頭豪族',
       imagePath: 'gozoku_1.jpeg'
     },
     {
       id: 2,
-      name: 'やんす 1',
+      name: 'H.I',
       birth: '199x-xx-xx',
-      note: 'やんす',
+      note: 'はやんすと',
       imagePath: 'gozoku_2.jpeg'
     },
     {
       id: 3,
-      name: 'やんす 2',
+      name: 'T.O',
       birth: '199x-xx-xx',
-      note: 'やんす',
+      note: 'たつやんす',
       imagePath: 'gozoku_3.jpeg'
     },
     {
       id: 4,
-      name: 'やんす 3',
+      name: 'K.K',
       birth: '199x-xx-xx',
-      note: 'やんす',
+      note: 'いけだ',
       imagePath: 'gozoku_4.jpeg'
     }
   ];

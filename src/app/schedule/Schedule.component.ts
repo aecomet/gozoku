@@ -124,9 +124,5 @@ export class AppSchedule {
       lat: 35.628631,
       lng: 139.742403
     }
-  ];
-
-  schedulesOrderByDateDesc(): Schedule[] {
-    return this.schedules.reverse();
-  }
+  ].reverse();
 }
