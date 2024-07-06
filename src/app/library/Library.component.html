@@ -1,0 +1,35 @@
+<div class="gozoku-flex">
+  <h3 class="gozoku-header">遺産</h3>
+
+  <p class="text-center">眠りし古の遺産達</p>
+
+  <mat-card class="gozoku-library">
+    <mat-card-header>
+      <mat-card-title>2022年 冬</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="gozoku-winter">
+        <p class="gozoku-note">※ 音量に注意してください。</p>
+
+        <video controls>
+          <source src="year/2022/winter/2022-winter_gozoku.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="gozoku-library">
+    <mat-card-header>
+      <mat-card-title>2022年 夏</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="gozoku-summer">
+        <div class="gozoku-alert">
+          <p class="gozoku-note">※ 音量に注意してください。</p>
+          <button class="gozoku-btn" (click)="onClickPlay()" [disabled]="buttonDisabled">ボタン</button>
+        </div>
+        <p class="king-text"></p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

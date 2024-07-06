@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    /* Enable lib types */
+    "types": [],
+
+    /* build option */
+    "target": "ES2022",
+    "module": "ES2022",
+    "lib": ["DOM", "ESNext", "ES2022"],
+    "moduleResolution": "Bundler",
+    "removeComments": true,
+    "skipLibCheck": true,
+
+    /* Generates corresponding '.map' file. */
+    "sourceMap": true,
+
+    /* Enable strict options. */
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitOverride": true,
+
+    /* resolve options */
+    "baseUrl": "./",
+    "paths": {
+      "@src/*.ts": ["src/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": ["src/main.ts"],
+  "include": ["src/**/*.d.ts"]
+}

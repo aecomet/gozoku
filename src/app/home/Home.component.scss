@@ -1,0 +1,13 @@
+.gozoku-member {
+  margin: 16px auto;
+  background: #888e98;
+  padding: 8px;
+
+  &:hover {
+    opacity: 0.98;
+  }
+}
+
+.gozoku-member-image {
+  object-fit: contain;
+}

@@ -1,0 +1,39 @@
+name: Lint Runner
+
+on: [pull_request]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  commitlint:
+    name: Commitlint
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/aecomet/commitlint-base:22.4.0
+      credentials:
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.PERSONAL_ACCESS_TOKEN_FOR_ACTIONS }}
+
+    steps:
+      - name: Get depth
+        run: echo "fetch_depth=$(( ${{ env.commits }} + 1 ))" >> $GITHUB_ENV
+        env:
+          commits: ${{ github.event.pull_request.commits }}
+
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: ${{ env.fetch_depth }}
+
+      - name: Set dir as safe directory
+        run: git config --global --add safe.directory $(pwd)
+
+      - name: Run commitlint
+        run: pnpx commitlint --from ${{ env.from }} --to ${{ env.to }} --verbose --config ${{ env.config }}
+        env:
+          from: ${{ github.event.pull_request.base.sha }}
+          to: ${{ github.event.pull_request.head.sha }}
+          config: /app/commitlint.config.mjs
