@@ -1,0 +1,16 @@
+node_modules
+dist
+doc
+
+.vscode
+
+README.md
+
+LICENSE
+
+docker-compose.yml
+Dockerfile
+
+.github
+.gitignore
+.editorconfig
