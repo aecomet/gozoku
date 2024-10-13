@@ -4,9 +4,9 @@
     "types": [],
 
     /* build option */
-    "target": "ES2022",
-    "module": "ES2022",
-    "lib": ["DOM", "ESNext", "ES2022"],
+    "target": "ES2023",
+    "module": "ESNext",
+    "lib": ["DOM", "ESNext", "ES2023"],
     "moduleResolution": "Bundler",
     "removeComments": true,
     "skipLibCheck": true,

@@ -123,6 +123,14 @@ export class AppSchedule {
       place: 'せせらぎを聴きながら 品川駅前店',
       lat: 35.628631,
       lng: 139.742403
+    },
+    {
+      id: 15,
+      title: '豪族会 H.I休日出勤の巻',
+      date: '2024-09-07',
+      place: '餃子マニア 品川本店',
+      lat: 35.626815,
+      lng: 139.737315
     }
   ].reverse();
 }
