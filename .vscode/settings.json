@@ -13,7 +13,7 @@
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "eslint.experimental.useFlatConfig": true,
+  "eslint.useFlatConfig": true,
   "eslint.options": {
     "overrideConfigFile": "eslint.config.mjs"
   },
