@@ -4,8 +4,7 @@
   justify-content: center;
 
   .gozoku-schedule-card {
-    background: #888e98;
-    margin: 16px;
+    margin: 16px 8px;
     width: 20%;
 
     &:hover {
@@ -17,7 +16,12 @@
 @media screen and (max-width: 768px) {
   .gozoku-schedule {
     .gozoku-schedule-card {
+      margin: 8px 0;
       width: 100%;
     }
   }
+}
+
+#map {
+  height: 500px;
 }

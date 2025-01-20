@@ -12,15 +12,22 @@ $theme: mat.define-theme(
 );
 
 html {
-  &,
-  body {
-    @include mat.all-component-themes($theme);
-    height: 100vh;
-  }
+  color-scheme: dark;
+  @include mat.theme(
+    (
+      color: mat.$violet-palette,
+      typography: Roboto,
+      density: 0
+    )
+  );
 
   body {
     margin: 0;
     font-family: Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .mat-mdc-card {
+    border-radius: 0 !important;
   }
 
   .gozoku-flex {
