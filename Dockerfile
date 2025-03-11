@@ -1,4 +1,4 @@
-FROM node:22.13.0-slim as builder
+FROM node:22.14.0-slim as builder
 
 WORKDIR /app
 COPY . /app
@@ -6,7 +6,7 @@ RUN yarn global add pnpm &&\
   pnpm install --frozen-lockfile &&\
   pnpm run build
 
-FROM httpd:alpine3.20
+FROM httpd:alpine3.21
 WORKDIR /usr/local/apache2/htdocs
 EXPOSE 8888
 COPY --chown=www-data:www-data --from=builder /app/dist /usr/local/apache2/htdocs
