@@ -24,7 +24,7 @@ jobs:
           commits: ${{ github.event.pull_request.commits }}
 
       - name: Checkout branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: ${{ env.fetch_depth }}
 
