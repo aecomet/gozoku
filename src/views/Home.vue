@@ -7,7 +7,7 @@
       <p class="hero-eyebrow">茨城 — 海と山の地より</p>
       <h1 class="hero-title">
         豪族会
-        <span class="sub">〜 GOZOKU 〜</span>
+        <span class="sub">〜 GOZOKUKAI 〜</span>
       </h1>
       <div class="brush-rule"></div>
       <p class="hero-desc">
@@ -23,10 +23,7 @@
     <div class="members-section">
       <div class="section-header">
         <p class="section-en">Clan Members</p>
-        <h2 class="section-ja">
-          メンバー
-          <small>豪族の一覧</small>
-        </h2>
+        <h2 class="section-ja">メンバー</h2>
       </div>
       <div class="member-list">
         <div class="member-row" v-for="(member, idx) in members" :key="member.id">
@@ -49,7 +46,7 @@ import { go } from '@/libraries/router';
 import { Member } from '@/types/Member';
 
 const members: Member[] = [
-  { id: 1, name: 'Y.H', rank: '筆頭豪族', initial: 'Y', note: '筆頭豪族', num: '01' },
+  { id: 1, name: 'Y.H', rank: '豪族', initial: 'Y', note: '筆頭豪族', num: '01' },
   { id: 2, name: 'H.I', rank: '平民', initial: 'H', note: 'パチモンのやんす', num: '02' },
   { id: 3, name: 'T.O', rank: '平民', initial: 'T', note: 'やんすの偽物', num: '03' },
   { id: 4, name: 'K.K', rank: '平民', initial: 'K', note: '元祖 やんす', num: '04' }
