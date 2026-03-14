@@ -1,7 +1,8 @@
 export type Member = {
   id: number;
   name: string;
-  birth: string;
+  rank: string;
+  initial: string;
   note: string;
-  imagePath: string;
+  num: string;
 };

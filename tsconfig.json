@@ -1,38 +1,34 @@
 {
   "compilerOptions": {
-    /* Enable lib types */
-    "types": [],
-
-    /* build option */
-    "target": "ES2023",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "lib": ["DOM", "ESNext", "ES2023"],
-    "moduleResolution": "Bundler",
-    "removeComments": true,
     "skipLibCheck": true,
-
-    /* Generates corresponding '.map' file. */
-    "sourceMap": true,
-
-    /* Enable strict options. */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
     "strict": true,
-    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitOverride": true,
-
-    /* resolve options */
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@src/*.ts": ["src/*"]
-    }
+      "@/*": ["./src/*"]
+    },
+    "types": ["vite/client"]
   },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  },
-  "files": ["src/main.ts"],
-  "include": ["src/**/*.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite.config.ts",
+    "src/**/*.png",
+    "src/**/*.mp4",
+    "src/**/*.mp3"
+  ]
 }
