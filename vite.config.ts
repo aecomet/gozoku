@@ -1,12 +1,37 @@
-import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import path from 'path';
+import { defineConfig } from 'vite';
 
-export default defineConfig({
-  plugins: [vue()],
-  base: '/gozoku/',
-  resolve: {
-    alias: {
-      '@': '/src'
+export default () => {
+  const SRC_PATH = 'src';
+  const OUTPUT_PATH = 'build';
+
+  return defineConfig({
+    plugins: [vue()],
+    base: '/gozoku/',
+    resolve: {
+      alias: {
+        '@': '/src'
+      }
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler'
+        }
+      }
+    },
+    publicDir: path.resolve(__dirname, `${SRC_PATH}/assets/public`),
+    // productioin build
+    build: {
+      rollupOptions: {
+        output: {
+          chunkFileNames: 'vendor.[hash].js',
+          entryFileNames: '[name].[hash].js'
+        }
+      },
+      outDir: path.resolve(__dirname, OUTPUT_PATH),
+      emptyOutDir: true
     }
-  }
-});
+  });
+};
