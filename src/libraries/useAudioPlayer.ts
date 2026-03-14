@@ -1,17 +1,19 @@
-import type { Resource } from '../types/AudioPlayerResource';
+import audioBGM from '@/assets/year/2022/summer/mp3/bgm.mp3';
+import audioSE from '@/assets/year/2022/summer/mp3/se.mp3';
+import type { Resource } from '@/types/AudioPlayerResource';
 
 export function useAudioPlayer() {
   const RESOURCE_PATHS: Resource[] = [
     {
       label: 'se',
-      path: 'year/2022/summer/mp3/se.mp3',
+      path: audioSE,
       audio: new AudioContext(),
       audioSource: null,
       gainNode: null
     },
     {
       label: 'bgm',
-      path: 'year/2022/summer/mp3/bgm.mp3',
+      path: audioBGM,
       audio: new AudioContext(),
       audioSource: null,
       gainNode: null

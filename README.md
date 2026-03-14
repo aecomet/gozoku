@@ -24,7 +24,7 @@ docker run -p 8888:80 --rm ghcr.io/aecomet/gozoku
 ```sh
 # install node
 node -v
-# => 24.3.0
+# => 24.14.0
 
 npm i -g pnpm
 

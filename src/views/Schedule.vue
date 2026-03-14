@@ -232,6 +232,10 @@ onMounted(() => {});
 }
 
 @media (max-width: 768px) {
+  #page-schedule {
+    padding: 90px 24px 60px;
+  }
+
   .schedule-grid {
     grid-template-columns: 1fr 1fr;
   }

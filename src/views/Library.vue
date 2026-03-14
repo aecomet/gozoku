@@ -13,8 +13,40 @@
         <div class="legacy-content">
           <p class="legacy-title">{{ item.title }}</p>
           <p class="legacy-note">{{ item.note }}</p>
-          <div v-if="item.type === 'video'" class="legacy-video-frame" title="動画を再生">▶</div>
-          <button v-else-if="item.type === 'link'" class="legacy-btn">{{ item.actionLabel }}</button>
+
+          <!-- 動画 -->
+          <video controls v-if="item.type === 'video'" class="legacy-video-frame" volume="0.3">
+            <source :src="winterGozoku" type="video/mp4" />
+          </video>
+          <!-- 音楽 -->
+          <div v-else-if="item.type === 'music'">
+            <button class="legacy-btn" @click.prevent="item.event" :disabled="buttonDisabled">
+              {{ item.actionLabel }}
+            </button>
+
+            <p class="king-text"></p>
+          </div>
+          <!-- 画像 -->
+          <div v-else-if="item.type === 'image'" class="legacy-image-list">
+            <figure v-for="(link, idx) in item.links" :key="idx" class="legacy-image-figure">
+              <img :src="link.url" :alt="link.label" class="legacy-image" />
+              <figcaption class="legacy-caption">{{ link.label }}</figcaption>
+            </figure>
+          </div>
+
+          <!-- リンク -->
+          <div v-else-if="item.type === 'link'">
+            <a
+              v-for="(link, idx) in item.links"
+              :key="idx"
+              :href="link.url"
+              class="legacy-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ link.label }}
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -23,34 +55,100 @@
 </template>
 
 <script setup lang="ts">
-interface LegacyItem {
-  year: string;
-  season: string;
-  title: string;
-  note: string;
-  type: 'video' | 'link';
-  actionLabel?: string;
-}
+import winterGozoku from '@/assets/year/2022/winter/2022-winter_gozoku.mp4';
+import archiveGozokuHome from '@/assets/year/2026/spring/archive-gozoku-home.png';
+import archiveGozokuLibrary from '@/assets/year/2026/spring/archive-gozoku-library.png';
+import archiveGozokuSchedule from '@/assets/year/2026/spring/archive-gozoku-schedule.png';
+import BackgroundElements from '@/components/BackgroundElements.vue';
+import PageHeader from '@/components/PageHeader.vue';
+import { useAudioPlayer } from '@/libraries/useAudioPlayer';
+import { LegacyItem } from '@/types/Library';
+import { onBeforeMount, ref } from 'vue';
+
+const { init, playSound, stopSound, sleep } = useAudioPlayer();
+const GOZOKU_TEXT: string = '夏の豪族回、今年も開幕決定!';
+const buttonDisabled = ref(false);
 
 const legacyList: LegacyItem[] = [
   {
-    year: '2022',
-    season: '冬 · WINTER',
-    title: '豪族会 — 冬の記録',
-    note: '音量に注意してください。',
-    type: 'video'
+    year: '2026',
+    season: '春',
+    title: 'Celebrate KK',
+    note: 'Clebration for KK',
+    type: 'link',
+    actionLabel: '記録を開く',
+    links: [
+      {
+        url: 'https://aecomet.github.io/celebrate-kk/',
+        label: 'KKを祝う会'
+      }
+    ]
+  },
+  {
+    year: '2026',
+    season: '春',
+    title: '古の豪族会サイト',
+    note: '',
+    type: 'image',
+    links: [
+      {
+        url: archiveGozokuHome,
+        label: 'アーカイブ 豪族会ホーム'
+      },
+      {
+        url: archiveGozokuLibrary,
+        label: 'アーカイブ 豪族会遺産'
+      },
+      {
+        url: archiveGozokuSchedule,
+        label: 'アーカイブ 豪族会開催履歴'
+      }
+    ]
   },
   {
     year: '2022',
-    season: '夏 · SUMMER',
+    season: '冬',
+    title: '豪族会 — 冬の記録',
+    note: '⚠ 音量に注意してください。',
+    type: 'video',
+    links: []
+  },
+  {
+    year: '2022',
+    season: '夏',
     title: '豪族会 — 夏の記録',
-    note: '音量に注意してください。',
-    type: 'link',
-    actionLabel: '記録を開く'
+    note: '⚠ 音量に注意してください。',
+    type: 'music',
+    actionLabel: '記録を開く',
+    event: async () => {
+      if (buttonDisabled.value) return;
+
+      buttonDisabled.value = true;
+      const kingText = document.querySelector('.king-text') as HTMLElement | null;
+      if (!kingText) return;
+      kingText.innerHTML = '';
+      kingText.classList.add('single-word');
+      // 音とともに一文字ずつ表示
+      await playSound('se', 0.3, true);
+      for (let i = 0; i < GOZOKU_TEXT.length; i++) {
+        kingText.innerHTML = GOZOKU_TEXT[i];
+        await sleep(300);
+      }
+      // 全文表示
+      kingText.innerHTML = GOZOKU_TEXT;
+      kingText.classList.remove('single-word');
+      kingText.classList.add('all-words');
+      await playSound('bgm', 0.3);
+      await stopSound('se');
+      await sleep(3500);
+      buttonDisabled.value = false;
+    }
   }
 ];
-import BackgroundElements from '@/components/BackgroundElements.vue';
-import PageHeader from '@/components/PageHeader.vue';
+
+onBeforeMount(() => {
+  init();
+});
 </script>
 
 <style scoped>
@@ -128,9 +226,6 @@ import PageHeader from '@/components/PageHeader.vue';
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-.legacy-content {
-  /* Content styles */
-}
 .legacy-title {
   font-family: 'Shippori Mincho', serif;
   font-size: 1.1rem;
@@ -147,10 +242,6 @@ import PageHeader from '@/components/PageHeader.vue';
   display: flex;
   align-items: center;
   gap: 6px;
-}
-.legacy-note::before {
-  content: '⚠';
-  font-size: 0.65rem;
 }
 .legacy-btn {
   display: inline-block;
@@ -170,9 +261,21 @@ import PageHeader from '@/components/PageHeader.vue';
   border-color: var(--copper);
 }
 
+.legacy-btn:disabled,
+.legacy-btn[disabled] {
+  background: var(--ash);
+  color: var(--ink3);
+  border-color: var(--ash);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.legacy-content {
+  overflow: auto;
+}
+
 .legacy-video-frame {
-  width: 240px;
-  height: 135px;
+  min-width: 240px;
+  width: 500px;
   background: var(--ink3);
   border: 1px solid var(--border);
   display: flex;
@@ -189,10 +292,78 @@ import PageHeader from '@/components/PageHeader.vue';
   color: var(--wave);
 }
 
+.king-text {
+  margin-top: 32px;
+  text-align: center;
+
+  &.single-word {
+    font-size: 24px;
+    font-style: italic;
+    padding: 8px;
+    text-align: center;
+  }
+
+  &.all-words {
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 8px;
+  }
+}
+
+.legacy-image-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.legacy-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  object-fit: cover;
+}
+.legacy-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+.legacy-image-figure {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.legacy-caption {
+  font-size: 0.7rem;
+  color: var(--ash);
+  margin-top: 4px;
+  text-align: center;
+  word-break: break-word;
+}
+
+@media (min-width: 600px) {
+  .legacy-image-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
+  #page-library {
+    padding: 90px 24px 60px;
+  }
   .legacy-item {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .legacy-video-frame {
+    width: 240px;
   }
 }
 </style>
