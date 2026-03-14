@@ -19,12 +19,19 @@
   --border-b: rgba(160, 97, 42, 0.55);
   --wave-a: rgba(109, 184, 204, 0.12);
 
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   html {
     color-scheme: dark;
   }
 
   body {
-    margin: 0;
     font-family: 'Noto Serif JP', serif;
     font-weight: 300;
     overflow: hidden;
@@ -86,14 +93,14 @@
   // ページ全体のラッパー
   .page {
     inset: 0;
-    pointer-events: none;
-    transform: translateY(24px);
+    transform: translateY(0);
     transition:
       opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
       transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
     scrollbar-width: thin;
     scrollbar-color: var(--copper) transparent;
   }
+
   .page::-webkit-scrollbar {
     width: 3px;
   }

@@ -1,10 +1,8 @@
 <template>
   <BackgroundElements />
-  <div id="app">
-    <Toolbar />
-    <router-view> </router-view>
-    <PageFooter />
-  </div>
+  <Toolbar />
+  <router-view> </router-view>
+  <PageFooter />
 </template>
 
 <script setup lang="ts">

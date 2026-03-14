@@ -73,6 +73,8 @@ nav {
     background 0.5s,
     border-color 0.5s;
   border-bottom: 1px solid transparent;
+  background: var(--ink);
+  border-bottom: 1px solid var(--border);
 }
 nav.bg-on {
   background: rgba(8, 12, 16, 0.92);

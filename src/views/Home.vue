@@ -15,7 +15,7 @@
         豪族の名の下、縁を結び、歴史を刻む。
       </p>
       <div class="hero-cta">
-        <button class="btn-clan" @click="goSchedule">開催履歴を見る</button>
+        <button class="btn-clan" @click="go('/schedule')">開催履歴を見る</button>
       </div>
     </section>
 
@@ -29,13 +29,12 @@
         </h2>
       </div>
       <div class="member-list">
-        <div class="member-row" v-for="(member, i) in members" :key="member.id">
-          <div class="member-rank" :class="{ main: i === 0 }">{{ member.rank }}</div>
+        <div class="member-row" v-for="(member, idx) in members" :key="member.id">
+          <div class="member-rank" :class="{ main: idx === 0 }">{{ member.rank }}</div>
           <div class="member-avatar">{{ member.initial }}</div>
           <div class="member-info">
             <p class="member-name">{{ member.name }}</p>
-            <p class="member-nickname">— {{ member.nickname }}</p>
-            <p class="member-born">{{ member.born }}</p>
+            <p class="member-nickname">— {{ member.note }}</p>
           </div>
           <div class="member-num">{{ member.num }}</div>
         </div>
@@ -46,17 +45,14 @@
 
 <script setup lang="ts">
 import ClanBadge from '@/components/ClanBadge.vue';
-import { useRouter } from 'vue-router';
-const router = useRouter();
-function goSchedule() {
-  router.push('/schedule');
-}
+import { go } from '@/libraries/router';
+import { Member } from '@/types/Member';
 
-const members = [
-  { id: 1, name: 'Y.H', rank: '筆頭豪族', initial: 'Y', nickname: '筆頭豪族', born: '199x-xx-xx', num: '01' },
-  { id: 2, name: 'H.I', rank: '豪族', initial: 'H', nickname: 'はやんすと', born: '199x-xx-xx', num: '02' },
-  { id: 3, name: 'T.O', rank: '豪族', initial: 'T', nickname: 'たつやんす', born: '199x-xx-xx', num: '03' },
-  { id: 4, name: 'K.K', rank: '豪族', initial: 'K', nickname: 'いけだ', born: '199x-xx-xx', num: '04' }
+const members: Member[] = [
+  { id: 1, name: 'Y.H', rank: '筆頭豪族', initial: 'Y', note: '筆頭豪族', num: '01' },
+  { id: 2, name: 'H.I', rank: '平民', initial: 'H', note: 'パチモンのやんす', num: '02' },
+  { id: 3, name: 'T.O', rank: '平民', initial: 'T', note: 'やんすの偽物', num: '03' },
+  { id: 4, name: 'K.K', rank: '平民', initial: 'K', note: '元祖 やんす', num: '04' }
 ];
 </script>
 

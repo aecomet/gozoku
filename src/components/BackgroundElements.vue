@@ -77,7 +77,7 @@ onMounted(() => {
   bottom: 100px;
   left: 0;
   right: 0;
-  z-index: 12;
+  z-index: -1;
   pointer-events: none;
   opacity: 0.12;
 }
@@ -88,7 +88,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   height: 220px;
-  z-index: 12;
+  z-index: -1;
   pointer-events: none;
   opacity: 0.35;
 }
