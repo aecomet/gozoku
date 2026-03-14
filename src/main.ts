@@ -1,5 +1,10 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from '@src/app/app.component.ts';
-import { appConfig } from '@src/app/app.config.ts';
+import App from '@/App.vue';
+import '@/assets/styles.scss';
+import { router } from '@/libraries/router.ts';
+import Vuetify from '@/libraries/vuetify.ts';
+import { createApp } from 'vue';
 
-bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err));
+const app = createApp(App);
+app.use(router);
+app.use(Vuetify);
+app.mount('#app');

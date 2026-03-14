@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@200;300;400;600&family=Noto+Sans+JP:wght@300;400&display=swap');
+
+:root {
+  --ink: #080c10;
+  --ink2: #0e1419;
+  --ink3: #141e26;
+  --ocean: #1a5f7a;
+  --ocean-lt: #2a8aaa;
+  --wave: #6db8cc;
+  --mist: #9dbfcc;
+  --tsukuba: #2a4a35;
+  --moss: #3d6b4a;
+  --copper: #a0612a;
+  --rust: #c47a3a;
+  --parchment: #d4c4a0;
+  --ash: #8a9aa5;
+  --white: #e8eff2;
+  --border: rgba(160, 97, 42, 0.25);
+  --border-b: rgba(160, 97, 42, 0.55);
+  --wave-a: rgba(109, 184, 204, 0.12);
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    background: var(--ink);
+    color: var(--parchment);
+  }
+
+  /* Noise texture */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+  }
+
+  // 共通アニメーション
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // レスポンシブ用変数
+  $breakpoint-md: 768px;
+  $breakpoint-sm: 480px;
+
+  // 共通余白
+  $main-padding-pc: 56px;
+  $main-padding-sp: 16px;
+
+  // z-index管理
+  $z-bg: 0;
+  $z-main: 10;
+  $z-header: 100;
+  $z-footer: 90;
+  $z-noise: 999;
+
+  // 汎用ユーティリティ
+  .fade-up {
+    opacity: 0;
+    animation: fade-up 1s forwards;
+  }
+
+  // =============================
+  // 共通レイアウト・ページ要素
+  // =============================
+
+  // ページ全体のラッパー
+  .page {
+    inset: 0;
+    pointer-events: none;
+    transform: translateY(24px);
+    transition:
+      opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    scrollbar-width: thin;
+    scrollbar-color: var(--copper) transparent;
+  }
+  .page::-webkit-scrollbar {
+    width: 3px;
+  }
+  .page::-webkit-scrollbar-thumb {
+    background: var(--copper);
+  }
+}

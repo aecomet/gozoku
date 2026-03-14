@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>豪族会 〜GOZOKU〜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@200;300;400;600&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:      #080c10;
+  --ink2:     #0e1419;
+  --ink3:     #141e26;
+  --ocean:    #1a5f7a;
+  --ocean-lt: #2a8aaa;
+  --wave:     #6db8cc;
+  --mist:     #9dbfcc;
+  --tsukuba:  #2a4a35;
+  --moss:     #3d6b4a;
+  --copper:   #a0612a;
+  --rust:     #c47a3a;
+  --parchment:#d4c4a0;
+  --ash:      #8a9aa5;
+  --white:    #e8eff2;
+  --border:   rgba(160,97,42,0.25);
+  --border-b: rgba(160,97,42,0.55);
+  --wave-a:   rgba(109,184,204,0.12);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  background: var(--ink);
+  color: var(--parchment);
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 300;
+  overflow: hidden;
+  height: 100%; width: 100%;
+}
+
+/* ── NOISE TEXTURE ── */
+body::after {
+  content:''; position:fixed; inset:0; z-index:999; pointer-events:none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.035; mix-blend-mode: overlay;
+}
+
+/* ── WAVE CANVAS BG ── */
+#wave-canvas {
+  position: fixed; bottom:0; left:0; right:0;
+  height: 220px; z-index: 0; pointer-events: none;
+  opacity: 0.35;
+}
+
+/* ── TSUKUBA SILHOUETTE SVG ── */
+#mountain-bg {
+  position: fixed; bottom: 100px; left: 0; right: 0;
+  z-index: 0; pointer-events: none; opacity: 0.12;
+}
+
+#app { position:fixed; inset:0; z-index:10; }
+
+/* ────────────────────────────
+   NAVIGATION
+──────────────────────────── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:600;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 56px;
+  transition: background 0.5s, border-color 0.5s;
+  border-bottom: 1px solid transparent;
+}
+nav.bg-on {
+  background: rgba(8,12,16,0.92);
+  backdrop-filter: blur(14px);
+  border-color: var(--border);
+}
+.nav-logo {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--rust);
+  cursor: pointer;
+}
+.nav-logo span { color: var(--mist); font-weight:400; font-size:0.7rem; letter-spacing:0.25em; display:block; margin-top:2px; }
+
+.nav-links { display:flex; gap:48px; list-style:none; }
+.nav-links li a {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  color: var(--ash);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links li a::after {
+  content:'';
+  position: absolute; bottom:-4px; left:0; right:0; height:1px;
+  background: var(--rust);
+  transform: scaleX(0); transform-origin: center;
+  transition: transform 0.3s;
+}
+.nav-links li a:hover, .nav-links li a.active { color: var(--parchment); }
+.nav-links li a.active::after, .nav-links li a:hover::after { transform: scaleX(1); }
+
+/* ────────────────────────────
+   PAGE SYSTEM
+──────────────────────────── */
+.page {
+  position: absolute; inset:0;
+  overflow-y: auto; overflow-x: hidden;
+  opacity: 0; pointer-events: none;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(.4,0,.2,1), transform 0.65s cubic-bezier(.4,0,.2,1);
+  scrollbar-width: thin; scrollbar-color: var(--copper) transparent;
+}
+.page::-webkit-scrollbar { width:3px; }
+.page::-webkit-scrollbar-thumb { background: var(--copper); }
+.page.active { opacity:1; transform:translateY(0); pointer-events:auto; }
+.page.exit   { opacity:0; transform:translateY(-16px); pointer-events:none; }
+
+/* ────────────────────────────
+   PAGE: HOME
+──────────────────────────── */
+#page-home {
+  display:flex; flex-direction:column; min-height:100vh;
+}
+
+.hero {
+  flex:1; min-height:100vh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; position:relative; padding:120px 40px 80px;
+  overflow:hidden;
+}
+
+/* Brushstroke horizontal rule */
+.brush-rule {
+  width: 200px; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--copper) 30%, var(--rust) 60%, transparent);
+  margin: 24px auto;
+  position: relative;
+  opacity:0; animation: fade-up 1s 0.9s forwards;
+}
+.brush-rule::before {
+  content:'';
+  position:absolute; inset:-3px; filter: blur(3px);
+  background: inherit; opacity:0.4;
+}
+
+/* Kamon-like geometric badge */
+.kamon {
+  width:90px; height:90px;
+  margin: 0 auto 36px;
+  position: relative;
+  opacity:0; animation: fade-up 1s 0.2s forwards;
+}
+.kamon svg { width:100%; height:100%; }
+
+.hero-eyebrow {
+  font-family:'Shippori Mincho', serif;
+  font-size:0.65rem; letter-spacing:0.5em;
+  color: var(--wave); text-transform:uppercase;
+  margin-bottom:16px;
+  opacity:0; animation: fade-up 1s 0.5s forwards;
+}
+.hero-title {
+  font-family:'Shippori Mincho', serif;
+  font-size: clamp(3rem,9vw,8rem);
+  font-weight:800;
+  line-height:1.0;
+  color: var(--white);
+  letter-spacing: 0.08em;
+  opacity:0; animation: fade-up 1s 0.65s forwards;
+}
+.hero-title .sub {
+  font-size:0.4em; font-weight:400;
+  color: var(--rust); letter-spacing:0.3em;
+  display:block; margin-top:8px;
+}
+.hero-desc {
+  max-width:420px;
+  font-size:0.8rem; line-height:2.2;
+  color: var(--ash); letter-spacing:0.1em;
+  margin-top:24px; position:relative; z-index:2;
+  opacity:0; animation: fade-up 1s 1.1s forwards;
+}
+.hero-cta {
+  margin-top:44px;
+  opacity:0; animation: fade-up 1s 1.3s forwards; z-index:2;
+}
+.btn-clan {
+  display:inline-block;
+  padding:14px 52px;
+  background: transparent;
+  border:1px solid var(--border-b);
+  color: var(--rust);
+  font-family:'Shippori Mincho', serif;
+  font-size:0.75rem; letter-spacing:0.3em;
+  cursor:pointer;
+  transition: all 0.35s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.btn-clan:hover {
+  background: var(--copper);
+  color: var(--ink);
+  border-color: var(--copper);
+}
+
+@keyframes fade-up {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* Members section on home page */
+.members-section {
+  padding:80px 56px 120px;
+  max-width: 1000px; margin:0 auto; width:100%;
+}
+.section-header { margin-bottom:56px; }
+.section-en {
+  font-family:'Shippori Mincho', serif;
+  font-size:0.6rem; letter-spacing:0.4em;
+  color: var(--wave); text-transform:uppercase;
+  margin-bottom:8px;
+}
+.section-ja {
+  font-family:'Shippori Mincho', serif;
+  font-size:2.6rem; font-weight:700;
+  color: var(--white); letter-spacing:0.12em;
+  line-height:1.2;
+}
+.section-ja small {
+  font-size:0.35em; color:var(--ash);
+  letter-spacing:0.25em; display:block;
+  font-weight:400; margin-top:4px;
+}
+
+.member-list { display:flex; flex-direction:column; gap:2px; }
+.member-row {
+  display:grid;
+  grid-template-columns: 56px 120px 1fr 48px;
+  align-items:center; gap:32px;
+  padding:28px 32px;
+  background: var(--ink2);
+  border:1px solid var(--border);
+  border-left:3px solid transparent;
+  transition: border-left-color 0.3s, background 0.3s;
+  cursor:default;
+  position:relative; overflow:hidden;
+}
+.member-row::before {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(90deg, rgba(160,97,42,0.05), transparent);
+  opacity:0; transition:opacity 0.3s;
+}
+.member-row:hover { border-left-color: var(--rust); }
+.member-row:hover::before { opacity:1; }
+.member-row:first-child { border-left-color: var(--copper); }
+
+.member-rank {
+  font-family:'Shippori Mincho', serif;
+  font-size:0.6rem; letter-spacing:0.15em;
+  color: var(--ash);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+.member-row:first-child .member-rank { color: var(--rust); }
+
+.member-avatar {
+  width:52px; height:52px; border-radius:50%;
+  border:1px solid var(--border);
+  background: var(--ink3);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Shippori Mincho', serif;
+  font-size:1.1rem; font-weight:700;
+  color: var(--copper);
+  overflow:hidden; flex-shrink:0;
+}
+.member-avatar img { width:100%; height:100%; object-fit:cover; }
+
+.member-info {}
+.member-name {
+  font-family:'Shippori Mincho', serif;
+  font-size:1.2rem; font-weight:600;
+  color: var(--white); letter-spacing:0.1em;
+  margin-bottom:4px;
+}
+.member-nickname {
+  font-size:0.72rem; color: var(--mist); letter-spacing:0.08em;
+}
+.member-born {
+  font-size:0.65rem; color: var(--ash); letter-spacing:0.06em; margin-top:2px;
+}
+
+.member-num {
+  font-family:'Shippori Mincho', serif;
+  font-size:2rem; font-weight:800;
+  color: rgba(160,97,42,0.15);
+  text-align:right;
+  line-height:1;
+}
+
+/* ────────────────────────────
+   PAGE: 開催履歴
+──────────────────────────── */
+#page-schedule { padding:100px 56px 80px; }
+
+.schedule-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap:2px;
+  max-width:1100px; margin:0 auto;
+}
+.event-card {
+  background: var(--ink2);
+  border:1px solid var(--border);
+  padding:28px 28px 24px;
+  position:relative; overflow:hidden;
+  transition: border-color 0.3s, background 0.3s;
+  cursor:default;
+}
+.event-card::after {
+  content:'';
+  position:absolute; bottom:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, var(--ocean), var(--wave), transparent);
+  transform: scaleX(0); transform-origin:left;
+  transition: transform 0.4s;
+}
+.event-card:hover { background: var(--ink3); border-color: var(--border-b); }
+.event-card:hover::after { transform: scaleX(1); }
+.event-card:first-child { border-color: var(--copper); }
+.event-card:first-child::after { background: linear-gradient(90deg, var(--copper), var(--rust), transparent); transform:scaleX(1); }
+
+.event-date {
+  font-size:0.62rem; letter-spacing:0.15em; color: var(--wave);
+  font-family:'Noto Sans JP', sans-serif; font-weight:300;
+  margin-bottom:10px;
+}
+.event-title {
+  font-family:'Shippori Mincho', serif;
+  font-size:0.95rem; font-weight:600;
+  color: var(--white); letter-spacing:0.08em;
+  line-height:1.5; margin-bottom:10px;
+}
+.event-place {
+  font-size:0.7rem; color: var(--ash); letter-spacing:0.06em;
+  display:flex; align-items:center; gap:6px;
+}
+.event-place::before { content:'◎'; color:var(--copper); font-size:0.55rem; }
+.event-place.online::before { content:'◈'; color:var(--wave); }
+.event-place.unknown { color: var(--ink3); }
+
+.map-placeholder {
+  max-width:1100px; margin:48px auto 0;
+  height:260px;
+  background: var(--ink2);
+  border:1px solid var(--border);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:12px;
+  position:relative; overflow:hidden;
+}
+.map-placeholder::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 35% 60%, rgba(26,95,122,0.2) 0%, transparent 50%),
+    radial-gradient(circle at 70% 40%, rgba(42,74,53,0.2) 0%, transparent 40%);
+}
+.map-grid {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(109,184,204,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(109,184,204,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.map-label {
+  font-family:'Shippori Mincho', serif;
+  font-size:0.7rem; letter-spacing:0.3em; color:var(--mist);
+  position:relative; z-index:1;
+}
+.map-icon { font-size:2rem; position:relative; z-index:1; opacity:0.5; }
+
+/* ────────────────────────────
+   PAGE: 遺産
+──────────────────────────── */
+#page-legacy { padding:100px 56px 80px; }
+
+.legacy-intro {
+  max-width:900px; margin:0 auto 56px;
+}
+.legacy-intro p {
+  font-size:0.8rem; color:var(--ash); letter-spacing:0.12em; line-height:2.2;
+  font-style:italic;
+}
+
+.legacy-list {
+  max-width:900px; margin:0 auto;
+  display:flex; flex-direction:column; gap:2px;
+}
+.legacy-item {
+  background: var(--ink2);
+  border:1px solid var(--border);
+  padding:40px 48px;
+  display:grid;
+  grid-template-columns: 120px 1fr;
+  gap:40px;
+  align-items:center;
+  transition: border-color 0.3s;
+  position:relative; overflow:hidden;
+}
+.legacy-item:hover { border-color: var(--border-b); }
+.legacy-item::before {
+  content:'';
+  position:absolute; left:0; top:0; bottom:0; width:3px;
+  background: linear-gradient(to bottom, var(--ocean), var(--tsukuba));
+  opacity:0; transition:opacity 0.3s;
+}
+.legacy-item:hover::before { opacity:1; }
+
+.legacy-era {
+  text-align:center;
+}
+.legacy-year {
+  font-family:'Shippori Mincho', serif;
+  font-size:1.8rem; font-weight:800;
+  color: var(--white); letter-spacing:0.1em;
+  line-height:1;
+}
+.legacy-season {
+  font-size:0.65rem; letter-spacing:0.3em; color: var(--wave);
+  margin-top:6px; font-family:'Noto Sans JP', sans-serif;
+}
+
+.legacy-content {}
+.legacy-title {
+  font-family:'Shippori Mincho', serif;
+  font-size:1.1rem; font-weight:600;
+  color: var(--white); letter-spacing:0.1em; margin-bottom:10px;
+}
+.legacy-note {
+  font-size:0.7rem; color:var(--wave);
+  letter-spacing:0.12em; margin-bottom:16px;
+  display:flex; align-items:center; gap:6px;
+}
+.legacy-note::before { content:'⚠'; font-size:0.65rem; }
+.legacy-btn {
+  display:inline-block;
+  padding:8px 28px;
+  border:1px solid var(--border-b);
+  color: var(--rust);
+  font-family:'Shippori Mincho', serif;
+  font-size:0.68rem; letter-spacing:0.2em;
+  cursor:pointer;
+  transition: all 0.3s;
+  background:transparent;
+}
+.legacy-btn:hover { background:var(--copper); color:var(--ink); border-color:var(--copper); }
+
+.legacy-video-frame {
+  width:240px; height:135px;
+  background: var(--ink3);
+  border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:2rem; color:var(--ash); cursor:pointer;
+  transition: border-color 0.3s;
+  flex-shrink:0;
+}
+.legacy-video-frame:hover { border-color:var(--ocean-lt); color:var(--wave); }
+
+/* Footer */
+.page-footer {
+  text-align:center; padding:48px;
+  font-family:'Shippori Mincho', serif;
+  font-size:0.6rem; letter-spacing:0.3em; color:var(--ash);
+  border-top:1px solid var(--border);
+  margin-top:60px;
+}
+
+/* ────────────────────────────
+   DECORATIVE VERTICAL TEXT
+──────────────────────────── */
+.vert-deco {
+  position:fixed; right:28px; top:50%; transform:translateY(-50%);
+  writing-mode:vertical-rl; text-orientation:mixed;
+  font-family:'Shippori Mincho', serif;
+  font-size:0.55rem; letter-spacing:0.4em;
+  color: rgba(160,97,42,0.3);
+  z-index:20; pointer-events:none;
+  user-select:none;
+}
+
+/* Page header shared */
+.page-head {
+  max-width:1100px; margin:0 auto 52px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:flex-end; justify-content:space-between;
+}
+.page-head-num {
+  font-family:'Shippori Mincho', serif;
+  font-size:5rem; font-weight:800;
+  color: rgba(160,97,42,0.12); line-height:1;
+}
+.page-head-right { text-align:right; }
+
+@media(max-width:768px){
+  nav { padding:18px 24px; }
+  .nav-links { gap:24px; }
+  .members-section, #page-schedule, #page-legacy { padding: 90px 24px 60px; }
+  .member-row { grid-template-columns:48px 1fr; gap:16px; }
+  .member-rank, .member-num { display:none; }
+  .legacy-item { grid-template-columns:1fr; gap:20px; }
+  .schedule-grid { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Mountain silhouette -->
+<svg id="mountain-bg" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,300 L0,220 L80,180 L160,200 L220,130 L290,80 L360,110 L420,160 L500,100 L580,40 L640,70 L700,30 L760,60 L820,100 L880,150 L960,90 L1040,120 L1120,160 L1180,200 L1260,170 L1340,210 L1440,190 L1440,300 Z"
+    fill="#2a4a35"/>
+  <path d="M0,300 L0,250 L100,230 L180,245 L260,220 L340,230 L440,215 L520,240 L620,210 L700,225 L800,200 L900,220 L1000,210 L1100,230 L1200,215 L1300,235 L1440,220 L1440,300 Z"
+    fill="#1a3a28" opacity="0.7"/>
+</svg>
+
+<!-- Wave canvas -->
+<canvas id="wave-canvas"></canvas>
+
+<!-- Vertical decoration -->
+<div class="vert-deco">茨城 — 豪族会 — GOZOKU</div>
+
+<div id="app">
+
+  <!-- NAVIGATION -->
+  <nav id="nav">
+    <div class="nav-logo" onclick="goTo('home')" style="cursor:pointer">
+      豪族会
+      <span>〜 GOZOKU 〜</span>
+    </div>
+    <ul class="nav-links">
+      <li><a onclick="goTo('home')"     data-page="home">Home</a></li>
+      <li><a onclick="goTo('schedule')" data-page="schedule">開催履歴</a></li>
+      <li><a onclick="goTo('legacy')"   data-page="legacy">遺産</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════ HOME ═══════════════════ -->
+  <div class="page active" id="page-home">
+
+    <section class="hero">
+      <!-- Kamon badge -->
+      <div class="kamon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(160,97,42,0.4)" stroke-width="1"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(160,97,42,0.25)" stroke-width="0.5"/>
+          <!-- stylized wave/mountain kamon -->
+          <path d="M50,18 L58,36 L76,38 L63,51 L66,69 L50,61 L34,69 L37,51 L24,38 L42,36 Z"
+            fill="none" stroke="rgba(160,97,42,0.7)" stroke-width="1.2"/>
+          <path d="M50,28 L55,38 L66,39 L58,47 L60,58 L50,53 L40,58 L42,47 L34,39 L45,38 Z"
+            fill="rgba(160,97,42,0.1)" stroke="rgba(160,97,42,0.4)" stroke-width="0.6"/>
+          <!-- wave lines at bottom -->
+          <path d="M30,74 Q40,70 50,74 Q60,78 70,74" fill="none" stroke="rgba(109,184,204,0.5)" stroke-width="1"/>
+          <path d="M28,80 Q38,76 50,80 Q62,84 72,80" fill="none" stroke="rgba(109,184,204,0.3)" stroke-width="0.8"/>
+        </svg>
+      </div>
+
+      <p class="hero-eyebrow">茨城 — 海と山の地より</p>
+      <h1 class="hero-title">
+        豪族会
+        <span class="sub">〜 GOZOKU 〜</span>
+      </h1>
+      <div class="brush-rule"></div>
+      <p class="hero-desc">
+        茨城の荒海と筑波の山嶺に育まれし者どもが集う。<br>
+        豪族の名の下、縁を結び、歴史を刻む。
+      </p>
+      <div class="hero-cta">
+        <button class="btn-clan" onclick="goTo('schedule')">開催履歴を見る</button>
+      </div>
+    </section>
+
+    <!-- Members -->
+    <div class="members-section">
+      <div class="section-header">
+        <p class="section-en">Clan Members</p>
+        <h2 class="section-ja">
+          メンバー
+          <small>豪族の一覧</small>
+        </h2>
+      </div>
+
+      <div class="member-list">
+        <!-- Y.H -->
+        <div class="member-row">
+          <div class="member-rank">筆頭豪族</div>
+          <div class="member-avatar">Y</div>
+          <div class="member-info">
+            <p class="member-name">Y.H</p>
+            <p class="member-nickname">— 筆頭豪族</p>
+            <p class="member-born">199x-xx-xx</p>
+          </div>
+          <div class="member-num">01</div>
+        </div>
+        <!-- H.I -->
+        <div class="member-row">
+          <div class="member-rank">豪族</div>
+          <div class="member-avatar">H</div>
+          <div class="member-info">
+            <p class="member-name">H.I</p>
+            <p class="member-nickname">— はやんすと</p>
+            <p class="member-born">199x-xx-xx</p>
+          </div>
+          <div class="member-num">02</div>
+        </div>
+        <!-- T.O -->
+        <div class="member-row">
+          <div class="member-rank">豪族</div>
+          <div class="member-avatar">T</div>
+          <div class="member-info">
+            <p class="member-name">T.O</p>
+            <p class="member-nickname">— たつやんす</p>
+            <p class="member-born">199x-xx-xx</p>
+          </div>
+          <div class="member-num">03</div>
+        </div>
+        <!-- K.K -->
+        <div class="member-row">
+          <div class="member-rank">豪族</div>
+          <div class="member-avatar">K</div>
+          <div class="member-info">
+            <p class="member-name">K.K</p>
+            <p class="member-nickname">— いけだ</p>
+            <p class="member-born">199x-xx-xx</p>
+          </div>
+          <div class="member-num">04</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">© aecomet — 豪族会 GOZOKU</div>
+  </div>
+
+  <!-- ═══════════════════ 開催履歴 ═══════════════════ -->
+  <div class="page" id="page-schedule">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="page-head">
+        <div class="page-head-num">02</div>
+        <div class="page-head-right">
+          <p class="section-en" style="text-align:right">Event History</p>
+          <h2 class="section-ja" style="text-align:right">開催履歴<small>豪族の集い</small></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-grid">
+      <div class="event-card">
+        <p class="event-date">2025 — 01 — 18</p>
+        <p class="event-title">豪族会 H.Iまたまた休日出勤の巻</p>
+        <p class="event-place">四文銭 品川店</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2024 — 09 — 07</p>
+        <p class="event-title">豪族会 H.I休日出勤の巻</p>
+        <p class="event-place">餃子マニア 品川本店</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2023 — 12 — 02</p>
+        <p class="event-title">豪族会 〜 研究室</p>
+        <p class="event-place">せせらぎを聴きながら 品川駅前店</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2023 — 08 — 26</p>
+        <p class="event-title">夏の豪族会</p>
+        <p class="event-place">四季彩 -shikisai- 品川港南口店</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2023 — 01 — 06 〜 07</p>
+        <p class="event-title">豪族会＠日立</p>
+        <p class="event-place">釜飯と串焼 とりでん 日立多賀店</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2022 — 07 — 17</p>
+        <p class="event-title">豪族会</p>
+        <p class="event-place">権之介 横浜西口店</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2021 — 12 — 11</p>
+        <p class="event-title">帰ってきた豪族会2021</p>
+        <p class="event-place">全席個室 楽蔵うたげ 八重洲店</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2021 — 06 — 11</p>
+        <p class="event-title">豪族会</p>
+        <p class="event-place online">オンライン</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2020 — 12 — 30</p>
+        <p class="event-title">豪族会</p>
+        <p class="event-place unknown">不明</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2020 — 08 — 14</p>
+        <p class="event-title">豪族会</p>
+        <p class="event-place unknown">不明</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2020 — 03 — 14</p>
+        <p class="event-title">プチ豪族会</p>
+        <p class="event-place">池田別邸</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2019 — 12 — 15</p>
+        <p class="event-title">豪族会 冬の陣</p>
+        <p class="event-place">BARBARA market place 151 新丸ビル店</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2019 — 08 — 31</p>
+        <p class="event-title">豪族会 夏の陣</p>
+        <p class="event-place">炭の豚笑屋 新橋店</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2019 — 08 — 17</p>
+        <p class="event-title">プチ豪族会</p>
+        <p class="event-place">NIKU ROCK 新宿西口店</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2018 — 12 — 29</p>
+        <p class="event-title">豪族会</p>
+        <p class="event-place">みなとみらい</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">2018 — 07 — 20 〜 21</p>
+        <p class="event-title">豪族会</p>
+        <p class="event-place unknown">不明</p>
+      </div>
+    </div>
+
+    <!-- Map placeholder -->
+    <div class="map-placeholder" style="max-width:1100px;margin:48px auto 0;">
+      <div class="map-grid"></div>
+      <div class="map-icon">🗾</div>
+      <p class="map-label">集いの地図 — 豪族会の足跡</p>
+    </div>
+
+    <div class="page-footer">© aecomet — 豪族会 GOZOKU</div>
+  </div>
+
+  <!-- ═══════════════════ 遺産 ═══════════════════ -->
+  <div class="page" id="page-legacy">
+    <div style="max-width:900px;margin:0 auto;">
+      <div class="page-head">
+        <div class="page-head-num">03</div>
+        <div class="page-head-right">
+          <p class="section-en" style="text-align:right">Legacy Archive</p>
+          <h2 class="section-ja" style="text-align:right">遺産<small>眠りし古の遺産達</small></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="legacy-list">
+      <!-- 2022 冬 -->
+      <div class="legacy-item">
+        <div class="legacy-era">
+          <p class="legacy-year">2022</p>
+          <p class="legacy-season">冬 · WINTER</p>
+        </div>
+        <div class="legacy-content">
+          <p class="legacy-title">豪族会 — 冬の記録</p>
+          <p class="legacy-note">音量に注意してください。</p>
+          <div class="legacy-video-frame" title="動画を再生">
+            ▶
+          </div>
+        </div>
+      </div>
+
+      <!-- 2022 夏 -->
+      <div class="legacy-item">
+        <div class="legacy-era">
+          <p class="legacy-year">2022</p>
+          <p class="legacy-season">夏 · SUMMER</p>
+        </div>
+        <div class="legacy-content">
+          <p class="legacy-title">豪族会 — 夏の記録</p>
+          <p class="legacy-note">音量に注意してください。</p>
+          <button class="legacy-btn">記録を開く</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">© aecomet — 豪族会 GOZOKU</div>
+  </div>
+
+</div><!-- #app -->
+
+<script>
+// ── WAVE ANIMATION ──
+const canvas = document.getElementById('wave-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, t = 0;
+
+function resize() {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = canvas.offsetHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+function drawWaves() {
+  ctx.clearRect(0, 0, W, H);
+  const waves = [
+    { amp:18, freq:0.012, speed:0.018, y:0.55, color:'rgba(26,95,122,0.5)',   lw:1.5 },
+    { amp:12, freq:0.018, speed:0.025, y:0.68, color:'rgba(109,184,204,0.35)',lw:1   },
+    { amp:8,  freq:0.025, speed:0.032, y:0.80, color:'rgba(109,184,204,0.2)', lw:0.8 },
+    { amp:22, freq:0.008, speed:0.012, y:0.42, color:'rgba(26,95,122,0.2)',   lw:2   },
+  ];
+  waves.forEach(w => {
+    ctx.beginPath();
+    ctx.strokeStyle = w.color;
+    ctx.lineWidth   = w.lw;
+    const baseY = H * w.y;
+    for (let x = 0; x <= W; x += 2) {
+      const y = baseY + Math.sin(x * w.freq + t * w.speed * 60) * w.amp
+                      + Math.sin(x * w.freq * 1.7 + t * w.speed * 40) * w.amp * 0.4;
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  });
+  t += 0.016;
+  requestAnimationFrame(drawWaves);
+}
+drawWaves();
+
+// ── PAGE TRANSITIONS ──
+let current = 'home';
+const pages = ['home','schedule','legacy'];
+
+function goTo(id) {
+  if (id === current) return;
+  const from = document.getElementById('page-' + current);
+  const to   = document.getElementById('page-' + id);
+  from.classList.remove('active'); from.classList.add('exit');
+  setTimeout(() => from.classList.remove('exit'), 650);
+  to.scrollTop = 0;
+  to.classList.add('active');
+  current = id;
+  updateNav();
+}
+
+function updateNav() {
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === current);
+  });
+  document.getElementById('nav').classList.toggle('bg-on', current !== 'home');
+}
+
+document.getElementById('page-home').addEventListener('scroll', function() {
+  if (current === 'home')
+    document.getElementById('nav').classList.toggle('bg-on', this.scrollTop > 50);
+});
+
+document.addEventListener('keydown', e => {
+  const i = pages.indexOf(current);
+  if ((e.key==='ArrowRight'||e.key==='ArrowDown') && i < pages.length-1) goTo(pages[i+1]);
+  if ((e.key==='ArrowLeft' ||e.key==='ArrowUp')   && i > 0) goTo(pages[i-1]);
+});
+
+updateNav();
+</script>
+</body>
+</html>
