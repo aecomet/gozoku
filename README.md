@@ -4,12 +4,6 @@
 
 ## Developer documentation
 
-### Languages
-
-- Angular
-- Angular Material
-- Typescript
-
 ### Quick Preview
 
 ```sh
@@ -31,7 +25,3 @@ pnpm install
 pnpm run dev
 # => Local:   http://localhost:8888/
 ```
-
-## Credits
-
-- [フリー素材ぱくたそ](https://www.pakutaso.com)
