@@ -1,7 +1,5 @@
 # Gozoku is a marvelous man in the world.
 
-## Page
-
 **[page](https://aecomet.github.io/gozoku)**!
 
 ## Developer documentation
