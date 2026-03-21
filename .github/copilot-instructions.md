@@ -39,13 +39,6 @@ Always follow this order — never skip a step:
 - Component names must be in PascalCase.
 - Avoid unnecessary `watch` or `computed` usage.
 
-#### Vuetify
-
-- Prefer Vuetify components over custom implementations.
-- Use Vuetify's theme and color system (e.g., `color` prop) consistently.
-- Use the grid system (`v-row` / `v-col`) for responsive layouts.
-- Use Vuetify's icon component (`v-icon`) for icons.
-
 #### Vue Router
 
 - Set a `name` for every route definition.
@@ -80,9 +73,8 @@ Manually verify the following routes are reachable without errors:
 | Route     | Path                               |
 | --------- | ---------------------------------- |
 | Home      | `/`                                |
-| Profile   | `/profile`                         |
-| Career    | `/career`                          |
-| Contact   | `/contact`                         |
+| Schedule  | `/schedule`                        |
+| Library   | `/library`                         |
 | Not Found | any undefined path (e.g., `/test`) |
 
 ### Build Verification
@@ -125,10 +117,10 @@ All commit messages must follow the [Conventional Commits](https://www.conventio
 ### Examples
 
 ```
-feat(auth): add login with Google OAuth
+feat(schedule): add event filter by year
 fix(router): prevent duplicate navigation on back button
 docs: update README with setup instructions
-chore(deps): upgrade vuetify to v4
+chore(deps): upgrade leaflet to v2
 ```
 
 ## Package Updates
