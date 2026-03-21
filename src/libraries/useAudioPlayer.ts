@@ -2,19 +2,29 @@ import audioBGM from '@/assets/year/2022/summer/mp3/bgm.mp3';
 import audioSE from '@/assets/year/2022/summer/mp3/se.mp3';
 import type { Resource } from '@/types/AudioPlayerResource';
 
+// AudioContext はページ全体で1つ共有する
+let sharedAudioContext: AudioContext | null = null;
+
+function getAudioContext(): AudioContext {
+  if (!sharedAudioContext) {
+    sharedAudioContext = new AudioContext();
+  }
+  return sharedAudioContext;
+}
+
 export function useAudioPlayer() {
   const RESOURCE_PATHS: Resource[] = [
     {
       label: 'se',
       path: audioSE,
-      audio: new AudioContext(),
+      audio: getAudioContext(),
       audioSource: null,
       gainNode: null
     },
     {
       label: 'bgm',
       path: audioBGM,
-      audio: new AudioContext(),
+      audio: getAudioContext(),
       audioSource: null,
       gainNode: null
     }

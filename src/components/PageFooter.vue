@@ -1,3 +1,10 @@
 <template>
-  <div class="text-center pa-2">© aecomet — 豪族会 GOZOKU</div>
+  <div class="page-footer">© aecomet — 豪族会 GOZOKU</div>
 </template>
+
+<style scoped>
+.page-footer {
+  text-align: center;
+  padding: 8px;
+}
+</style>

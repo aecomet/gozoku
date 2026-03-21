@@ -20,9 +20,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 const waveCanvas = ref<HTMLCanvasElement | null>(null);
+let animationId: number | null = null;
 
 onMounted(() => {
   const canvas = waveCanvas.value;
@@ -35,7 +36,7 @@ onMounted(() => {
   function resize() {
     if (!canvas) return;
     W = canvas.width = window.innerWidth;
-    H = canvas.height = 220; // 高さは固定値
+    H = canvas.height = 220;
     ctx = canvas.getContext('2d');
   }
   window.addEventListener('resize', resize);
@@ -65,9 +66,14 @@ onMounted(() => {
       ctx.stroke();
     });
     t += 0.016;
-    requestAnimationFrame(drawWaves);
+    animationId = requestAnimationFrame(drawWaves);
   }
   drawWaves();
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', resize);
+    if (animationId !== null) cancelAnimationFrame(animationId);
+  });
 });
 </script>
 

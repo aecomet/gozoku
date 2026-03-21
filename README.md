@@ -2,6 +2,14 @@
 
 **[page](https://aecomet.github.io/gozoku)**!
 
+## Tech Stack
+
+- **Vue 3** + **TypeScript** + **Vite 8**
+- **Vue Router 5** (ルーティング・遅延ロード)
+- **Leaflet 2** (地図)
+- **SCSS** (スタイル)
+- **Brotli圧縮** (vite-plugin-compression)
+
 ## Developer documentation
 
 ### Quick Preview
@@ -25,3 +33,14 @@ pnpm install
 pnpm run dev
 # => Local:   http://localhost:8888/
 ```
+
+### Build
+
+```sh
+pnpm run build
+# => build/
+```
+
+## Architecture
+
+詳細は [docs/architecture.md](docs/architecture.md) を参照してください。

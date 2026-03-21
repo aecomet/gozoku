@@ -1,13 +1,14 @@
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import { defineConfig } from 'vite';
+import compression from 'vite-plugin-compression';
 
 export default () => {
   const SRC_PATH = 'src';
   const OUTPUT_PATH = 'build';
 
   return defineConfig({
-    plugins: [vue()],
+    plugins: [vue(), compression({ algorithm: 'brotliCompress', ext: '.br' })],
     base: '/gozoku/',
     resolve: {
       alias: {
