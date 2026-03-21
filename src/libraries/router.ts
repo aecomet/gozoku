@@ -1,14 +1,11 @@
 import Home from '@/views/Home.vue';
-import Library from '@/views/Library.vue';
-import NotFound from '@/views/NotFound.vue';
-import Schedule from '@/views/Schedule.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
-  { path: '/schedule', name: 'Schedule', component: Schedule },
-  { path: '/library', name: 'Library', component: Library },
-  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }
+  { path: '/schedule', name: 'Schedule', component: () => import('@/views/Schedule.vue') },
+  { path: '/library', name: 'Library', component: () => import('@/views/Library.vue') },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/views/NotFound.vue') }
 ];
 
 export const router = createRouter({

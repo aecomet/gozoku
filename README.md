@@ -5,10 +5,10 @@
 ## Tech Stack
 
 - **Vue 3** + **TypeScript** + **Vite 8**
-- **Vuetify 4** (UIコンポーネント)
-- **Vue Router 5** (ルーティング)
+- **Vue Router 5** (ルーティング・遅延ロード)
 - **Leaflet 2** (地図)
 - **SCSS** (スタイル)
+- **Brotli圧縮** (vite-plugin-compression)
 
 ## Developer documentation
 

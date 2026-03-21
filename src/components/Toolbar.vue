@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 // ページ情報をJSON配列で管理
@@ -28,7 +28,7 @@ const pages = [
 const router = useRouter();
 const route = useRoute();
 const current = ref('home');
-const navBgOn = ref(false);
+const navBgOn = computed(() => current.value !== 'home');
 
 function pageNameByRoute(path: string): string {
   const found = pages.find((p) => p.path === path || (p.path !== '/' && path.startsWith(p.path)));
@@ -43,16 +43,11 @@ function navigate(pageName: string) {
   router.push(page.path);
 }
 
-function updateNavBg() {
-  navBgOn.value = current.value !== 'home';
-}
-
 // ページ遷移時にactive管理
 watch(
   () => route.path,
   (newPath) => {
     current.value = pageNameByRoute(newPath);
-    updateNavBg();
   },
   { immediate: true }
 );
