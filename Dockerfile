@@ -9,7 +9,7 @@ RUN yarn global add pnpm &&\
 FROM httpd:alpine3.21
 WORKDIR /usr/local/apache2/htdocs
 EXPOSE 8888
-COPY --chown=www-data:www-data --from=builder /app/dist /usr/local/apache2/htdocs
+COPY --chown=www-data:www-data --from=builder /app/build /usr/local/apache2/htdocs
 RUN apk add libcap && chown -hR www-data:www-data /usr/local/apache2/ && \
   setcap 'cap_net_bind_service=+ep' /usr/local/apache2/bin/httpd
 USER www-data
