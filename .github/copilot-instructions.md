@@ -24,7 +24,9 @@ Always follow this order — never skip a step:
 1. Stage changes: `git add`
 2. Review staged diff: `git --no-pager diff --staged`
 3. Confirm every item in the checklist below is satisfied
-4. Run `git commit`
+4. Review and update `docs/architecture.md` if the project structure or tech stack has changed
+5. Review and update `README.md` if setup instructions or feature descriptions are outdated
+6. Run `git commit`
 
 ### Review Checklist
 
