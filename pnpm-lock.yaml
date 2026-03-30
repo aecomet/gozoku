@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@maxel01/vue-leaflet':
-        specifier: 1.0.0-beta.6
-        version: 1.0.0-beta.6(leaflet@2.0.0-alpha.1)(vue@3.5.30(typescript@5.9.3))
+        specifier: 1.0.0-beta.7
+        version: 1.0.0-beta.7(leaflet@2.0.0-alpha.1)(vue@3.5.30(typescript@5.9.3))
       leaflet:
         specifier: 2.0.0-alpha.1
         version: 2.0.0-alpha.1
@@ -157,8 +157,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.29':
     resolution: {integrity: sha512-uw6guiW/gcAGPDhLmd77/6lW8QLeiV5RUTsAX46Db6oLhGaVj4lhnPwb184s1bkc8kdVg/+h988dro8GRDpmYQ==}
 
-  '@maxel01/vue-leaflet@1.0.0-beta.6':
-    resolution: {integrity: sha512-Bd77BSRHw9o4tWG14QAQWykAx0XMOCkisc45regwdqfmgjoIz1EUXujfId9wni1UvOgUcVttOgnv+HkXDwIdmg==}
+  '@maxel01/vue-leaflet@1.0.0-beta.7':
+    resolution: {integrity: sha512-8n4b2l8zDX11V72FgL98rpMAOngmmuZW5NDSELjpuyM6qowbzJ5F/5cS850wCu3/6wn0RQGu28NB9qs/sc7oCQ==}
     peerDependencies:
       leaflet: ^2.0.0-alpha
       vue: ^3.5.0
@@ -974,9 +974,6 @@ packages:
     resolution: {integrity: sha512-bLVMLPtstlZ4iMQHpFHTR7GAGj2jxi8Dg0s2h2MafAE4uSWF98FC/3MomU51iQAMf8/qDUbKWf5GxuvvVcXEhw==}
     engines: {node: '>=20'}
 
-  ts-debounce@4.0.0:
-    resolution: {integrity: sha512-+1iDGY6NmOGidq7i7xZGA4cm8DAa6fqdYcvO5Z6yBevH++Bdo9Qt/mN0TzHUgcCcKv1gmh9+W5dHqz8pMWbCbg==}
-
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
@@ -1274,10 +1271,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@maxel01/vue-leaflet@1.0.0-beta.6(leaflet@2.0.0-alpha.1)(vue@3.5.30(typescript@5.9.3))':
+  '@maxel01/vue-leaflet@1.0.0-beta.7(leaflet@2.0.0-alpha.1)(vue@3.5.30(typescript@5.9.3))':
     dependencies:
       leaflet: 2.0.0-alpha.1
-      ts-debounce: 4.0.0
       vue: 3.5.30(typescript@5.9.3)
 
   '@napi-rs/wasm-runtime@1.1.1':
@@ -2069,8 +2065,6 @@ snapshots:
   tr46@6.0.0:
     dependencies:
       punycode: 2.3.1
-
-  ts-debounce@4.0.0: {}
 
   tslib@2.8.1: {}
 
