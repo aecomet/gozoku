@@ -46,19 +46,12 @@ Always follow this order — never skip a step:
 - Use `<RouterView>` with a `key` where appropriate to prevent unintended component reuse.
 - Apply navigation guards (`beforeEach`, etc.) for authentication and authorization when needed.
 
-### Lint / Format
+### Lint/Format Verification
 
-Verify there are no ESLint errors or warnings:
-
-```sh
-pnpm lint
-```
-
-Verify code conforms to Prettier formatting:
-
-```sh
-pnpm format
-```
+Run before every commit:
+- Format check: `pnpm format:check` (Prettier with EditorConfig rules)
+- Lint: `pnpm lint` (if available for this project)
+- Auto-fix: `pnpm format` (applies Prettier fixes)
 
 ### Route Verification
 
@@ -123,8 +116,19 @@ docs: update README with setup instructions
 chore(deps): upgrade leaflet to v2
 ```
 
-## Package Updates
+## Pre-commit Workflow
 
-- Use npm-check-updates listed in package.json and run the following command:
-  - `npx ncu`
-- For packages that have pending updates, analyze and report the release notes only for packages with major version bumps.
+Lefthook is configured to run automatically:
+- `pre-commit`: Runs `pnpm format:check` and (if available) `pnpm lint`
+- `pre-push`: Reviews staged changes via `scripts/review-diff.sh`
+
+Before committing, ensure:
+1. Stage your changes (`git add`)
+2. Lefthook will auto-verify formatting and lint
+3. If hooks fail, fix issues and try again
+
+### Package Updates
+
+- Use `npx npm-check-updates -u` to update all packages to latest versions
+- Then run `CI=true pnpm install --no-frozen-lockfile` to update lockfile
+- Verify with `pnpm build` after updates
