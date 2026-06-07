@@ -1,5 +1,5 @@
-import audioBGM from '@/assets/year/2022/summer/mp3/bgm.mp3';
-import audioSE from '@/assets/year/2022/summer/mp3/se.mp3';
+import audioBGM from '@/assets/audio/bgm.mp3';
+import audioSE from '@/assets/audio/se.mp3';
 import type { Resource } from '@/types/AudioPlayerResource';
 
 // AudioContext はページ全体で1つ共有する
