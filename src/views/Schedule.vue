@@ -43,6 +43,13 @@ const popupOptions = {
 
 const events: ScheduleEvent[] = [
   {
+    date: '2026 — 04 — 04',
+    title: 'K.K の Celebrate Party',
+    place: 'チャペル&ウェディングレストラン バウム(〒305-0051 茨城県つくば市二の宮１丁目１３−５)',
+    lat: 36.0697,
+    lng: 140.1183
+  },
+  {
     date: '2025 — 12 — 06',
     title: '研究室飲み会',
     place: 'わらやき 龍馬商店 新橋駅前店',
