@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 const routes = [
   { path: '/', name: 'Home', component: () => import('@/views/Home.vue') },
@@ -8,7 +8,7 @@ const routes = [
 ];
 
 export const router = createRouter({
-  history: createWebHistory('/gozoku/'),
+  history: createWebHashHistory('/gozoku/'),
   routes
 });
 
