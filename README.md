@@ -5,10 +5,12 @@
 ## Tech Stack
 
 - **Vue 3** + **TypeScript** + **Vite 8**
-- **Vue Router 5** (ルーティング・遅延ロード)
+- **Vue Router 5** (hash history / 遅延ロード)
 - **Leaflet 2** (地図)
 - **SCSS** (スタイル)
 - **Brotli圧縮** (vite-plugin-compression)
+- **pnpm 11** — パッケージマネージャ
+- **Lefthook** — pre-commit (format check) + pre-push (AI code review)
 
 ## Developer documentation
 
@@ -24,7 +26,7 @@ docker run -p 8888:80 --rm ghcr.io/aecomet/gozoku
 ```sh
 # install node
 node -v
-# => 24.14.0
+# => 26.3.0
 
 npm i -g pnpm
 
@@ -40,6 +42,15 @@ pnpm run dev
 pnpm run build
 # => build/
 ```
+
+## CI/CD
+
+| Trigger      | Workflow          | Description                         |
+| ------------ | ----------------- | ----------------------------------- |
+| push to main | `app-release.yml` | Build → Deploy to Pages → Docker    |
+| Pull Request | `ci.yml`          | Format check + Build                |
+| pre-commit   | lefthook          | Format check                        |
+| pre-push     | lefthook          | AI code review (blocker/high gates) |
 
 ## Architecture
 
