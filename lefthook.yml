@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: '*.{js,mjs,cjs,ts,vue,scss,json,yml,yaml,md}'
+      run: pnpm format:check
+
+pre-push:
+  commands:
+    review:
+      run: bash scripts/review-diff.sh

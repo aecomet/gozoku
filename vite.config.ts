@@ -8,7 +8,7 @@ export default () => {
   const OUTPUT_PATH = 'build';
 
   return defineConfig({
-    plugins: [vue(), compression({ algorithm: 'brotliCompress', ext: '.br' })],
+    plugins: [vue(), compression()],
     base: '/gozoku/',
     resolve: {
       alias: {

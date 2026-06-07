@@ -56,9 +56,9 @@
 
 <script setup lang="ts">
 import winterGozoku from '@/assets/year/2022/winter/2022-winter_gozoku.mp4';
-import archiveGozokuHome from '@/assets/year/2026/spring/archive-gozoku-home.png';
-import archiveGozokuLibrary from '@/assets/year/2026/spring/archive-gozoku-library.png';
-import archiveGozokuSchedule from '@/assets/year/2026/spring/archive-gozoku-schedule.png';
+import archiveGozokuHome from '@/assets/year/2026/spring/archive-gozoku-home.webp';
+import archiveGozokuLibrary from '@/assets/year/2026/spring/archive-gozoku-library.webp';
+import archiveGozokuSchedule from '@/assets/year/2026/spring/archive-gozoku-schedule.webp';
 import BackgroundElements from '@/components/BackgroundElements.vue';
 import PageHeader from '@/components/PageHeader.vue';
 import { useAudioPlayer } from '@/libraries/useAudioPlayer';
