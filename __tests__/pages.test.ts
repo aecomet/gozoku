@@ -38,7 +38,7 @@ vi.mock('@/libraries/leaflet.ts', () => ({
   LTileLayer: { template: '<div class="l-tile-layer" />', props: ['url', 'layerType', 'name'] }
 }));
 
-function createTestRouter(initialRoute = '/') {
+function createTestRouter() {
   return createRouter({
     history: createMemoryHistory(),
     routes: [
