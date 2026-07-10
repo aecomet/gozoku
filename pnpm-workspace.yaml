@@ -1,2 +1,4 @@
 allowBuilds:
   '@parcel/watcher': true
+minimumReleaseAgeExclude:
+  - prettier@3.9.5
