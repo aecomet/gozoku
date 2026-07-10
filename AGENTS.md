@@ -34,6 +34,7 @@
 ```sh
 pnpm dev           # Start dev server
 pnpm build         # Build to build/
+pnpm test          # Run Vitest
 pnpm format:check  # Check formatting
 pnpm format        # Auto-format
 ```
