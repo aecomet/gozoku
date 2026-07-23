@@ -72,6 +72,19 @@ const buttonDisabled = ref(false);
 const legacyList: LegacyItem[] = [
   {
     year: '2026',
+    season: '夏',
+    title: '夏詣で — 夏の豪族会への道',
+    note: '鳥居を目指して歩こう',
+    type: 'link',
+    links: [
+      {
+        url: 'https://gozoku.github.io/gozoku/src/assets/year/2026/summer/',
+        label: '夏の祭りを体験する'
+      }
+    ]
+  },
+  {
+    year: '2026',
     season: '春',
     title: 'Celebrate KK',
     note: 'Clebration for KK',
