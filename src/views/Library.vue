@@ -78,7 +78,7 @@ const legacyList: LegacyItem[] = [
     type: 'link',
     links: [
       {
-        url: 'https://gozoku.github.io/gozoku/src/assets/year/2026/summer/',
+        url: 'https://aecomet.github.io/gozoku/summer-2026/',
         label: '夏の祭りを体験する'
       }
     ]
