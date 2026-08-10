@@ -1,8 +1,8 @@
 {
-  "prettier.configPath": "prettier.config.js",
+  "oxc.fmt.configPath": ".oxfmtrc.json",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "[dockerfile]": {

@@ -277,7 +277,7 @@ describe('Library', () => {
     });
 
     const legacyItems = wrapper.findAll('.legacy-item');
-    expect(legacyItems.length).toBe(4);
+    expect(legacyItems.length).toBe(5);
   });
 
   test('renders legacy item details', async () => {
@@ -289,6 +289,7 @@ describe('Library', () => {
       global: { plugins: [router] }
     });
 
+    expect(wrapper.text()).toContain('夏詣で — 夏の豪族会への道');
     expect(wrapper.text()).toContain('Celebrate KK');
     expect(wrapper.text()).toContain('古の豪族会サイト');
     expect(wrapper.text()).toContain('豪族会 — 冬の記録');
@@ -306,7 +307,7 @@ describe('Library', () => {
 
     const links = wrapper.findAll('.legacy-link');
     expect(links.length).toBeGreaterThan(0);
-    expect(links[0].attributes('href')).toBe('https://aecomet.github.io/celebrate-kk/');
+    expect(links[0].attributes('href')).toBe('https://aecomet.github.io/gozoku/summer-2026/');
   });
 
   test('renders video type items', async () => {
