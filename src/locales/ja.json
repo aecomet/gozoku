@@ -2,7 +2,8 @@
   "nav": {
     "home": "Home",
     "schedule": "開催履歴",
-    "library": "遺産"
+    "library": "遺産",
+    "brand": "豪族会"
   },
   "footer": {
     "brand": "© aecomet — 豪族会 GOZOKU"
@@ -14,6 +15,7 @@
     "desc1": "茨城の荒海と筑波の山嶺に育まれし者どもが集う。",
     "desc2": "豪族の名の下、縁を結び、歴史を刻む。",
     "cta": "開催履歴を見る",
+    "vertDeco": "茨城 — 豪族会 — GOZOKU",
     "sectionEn": "Clan Members",
     "sectionJa": "メンバー",
     "members": [

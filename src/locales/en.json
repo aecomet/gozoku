@@ -2,10 +2,11 @@
   "nav": {
     "home": "Home",
     "schedule": "Event History",
-    "library": "Legacy"
+    "library": "Legacy",
+    "brand": "GOZOKU"
   },
   "footer": {
-    "brand": "© aecomet — 豪族会 GOZOKU"
+    "brand": "© aecomet — GOZOKU"
   },
   "home": {
     "eyebrow": "From Ibaraki — the land of sea and mountains",
@@ -14,6 +15,7 @@
     "desc1": "Gathered here are those raised by Ibaraki's wild seas and the peaks of Mount Tsukuba.",
     "desc2": "In the name of the clan, we forge bonds and carve history.",
     "cta": "View Event History",
+    "vertDeco": "Ibaraki — GOZOKU",
     "sectionEn": "Clan Members",
     "sectionJa": "Members",
     "members": [
@@ -41,7 +43,7 @@
       { "title": "Gozoku-kai: H.I works a holiday", "place": "Gyoza Mania, Shinagawa Main Store" },
       { "title": "Gozoku-kai — at the lab", "place": "Seseragi o Kikinagara, Shinagawa Station Front" },
       { "title": "Summer Gozoku-kai", "place": "Shikisai, Shinagawa Konan Exit" },
-      { "title": "Gozoku-kai @ Hitachi", "place": "Toriden Kamameshi & Kushiyaki, Hitachi Taga" },
+      { "title": "Gozoku-kai at Hitachi", "place": "Toriden Kamameshi & Kushiyaki, Hitachi Taga" },
       { "title": "Gozoku-kai", "place": "Gonnosuke, Yokohama West Exit" },
       { "title": "Gozoku-kai is back, 2021", "place": "Rakuzo Utage (all-private rooms), Yaesu" },
       { "title": "Gozoku-kai", "place": "Online" },
