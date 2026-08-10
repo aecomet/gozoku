@@ -1,0 +1,114 @@
+{
+  "nav": {
+    "home": "Home",
+    "schedule": "開催履歴",
+    "library": "遺産"
+  },
+  "footer": {
+    "brand": "© aecomet — 豪族会 GOZOKU"
+  },
+  "home": {
+    "eyebrow": "茨城 — 海と山の地より",
+    "title": "豪族会",
+    "titleSub": "〜 GOZOKUKAI 〜",
+    "desc1": "茨城の荒海と筑波の山嶺に育まれし者どもが集う。",
+    "desc2": "豪族の名の下、縁を結び、歴史を刻む。",
+    "cta": "開催履歴を見る",
+    "sectionEn": "Clan Members",
+    "sectionJa": "メンバー",
+    "members": [
+      { "rank": "豪族", "note": "筆頭豪族" },
+      { "rank": "平民", "note": "パチモンのやんす" },
+      { "rank": "平民", "note": "やんすの偽物" },
+      { "rank": "平民", "note": "元祖 やんす" }
+    ]
+  },
+  "schedule": {
+    "header": {
+      "en": "Event History",
+      "ja": "開催履歴",
+      "sub": "豪族の集い",
+      "subEn": "Gathering of the clan"
+    },
+    "events": [
+      {
+        "title": "K.K の Celebrate Party",
+        "place": "チャペル&ウェディングレストラン バウム(〒305-0051 茨城県つくば市二の宮１丁目１３−５)"
+      },
+      { "title": "研究室飲み会", "place": "わらやき 龍馬商店 新橋駅前店" },
+      { "title": "豪族会 H.Iの霊圧が消えた...?", "place": "焼肉ここから 上野店" },
+      { "title": "豪族会 H.Iまたまた休日出勤の巻", "place": "四文銭 品川店" },
+      { "title": "豪族会 H.I休日出勤の巻", "place": "餃子マニア 品川本店" },
+      { "title": "豪族会 〜 研究室", "place": "せせらぎを聴きながら 品川駅前店" },
+      { "title": "夏の豪族会", "place": "四季彩 -shikisai- 品川港南口店" },
+      { "title": "豪族会＠日立", "place": "釜飯と串焼 とりでん 日立多賀店" },
+      { "title": "豪族会", "place": "権之介 横浜西口店" },
+      { "title": "帰ってきた豪族会2021", "place": "全席個室 楽蔵うたげ 八重洲店" },
+      { "title": "豪族会", "place": "オンライン" },
+      { "title": "豪族会", "place": "不明" },
+      { "title": "豪族会", "place": "不明" },
+      { "title": "プチ豪族会", "place": "池田別邸" },
+      { "title": "豪族会 冬の陣", "place": "BARBARA market place 151 新丸ビル店" },
+      { "title": "豪族会 夏の陣", "place": "炭の豚笑屋 新橋店" },
+      { "title": "プチ豪族会", "place": "NIKU ROCK 新宿西口店" },
+      { "title": "豪族会", "place": "みなとみらい" },
+      { "title": "豪族会", "place": "不明" }
+    ]
+  },
+  "library": {
+    "header": {
+      "en": "Legacy Archive",
+      "ja": "遺産",
+      "sub": "眠りし古の遺産達",
+      "subEn": "The slumbering legacies of old"
+    },
+    "intro": "ここに眠るのは、豪族会の古き良き時代。忘れ去られた記録と記憶が、静かに息づいている。",
+    "gozokuText": "夏の豪族回、今年も開幕決定!",
+    "legacy": [
+      {
+        "season": "夏",
+        "title": "夏詣で — 夏の豪族会への道",
+        "note": "鳥居を目指して歩こう",
+        "links": [{ "label": "夏の祭りを体験する" }]
+      },
+      {
+        "season": "春",
+        "title": "Celebrate KK",
+        "note": "Clebration for KK",
+        "actionLabel": "記録を開く",
+        "links": [{ "label": "KKを祝う会" }]
+      },
+      {
+        "season": "春",
+        "title": "古の豪族会サイト",
+        "note": "",
+        "links": [
+          { "label": "アーカイブ 豪族会ホーム" },
+          { "label": "アーカイブ 豪族会遺産" },
+          { "label": "アーカイブ 豪族会開催履歴" }
+        ]
+      },
+      {
+        "season": "冬",
+        "title": "豪族会 — 冬の記録",
+        "note": "⚠ 音量に注意してください。",
+        "links": []
+      },
+      {
+        "season": "夏",
+        "title": "豪族会 — 夏の記録",
+        "note": "⚠ 音量に注意してください。",
+        "actionLabel": "記録を開く",
+        "links": []
+      }
+    ]
+  },
+  "notFound": {
+    "header": {
+      "en": "Not found",
+      "ja": "存在しないページ",
+      "sub": "このページは存在しません",
+      "subEn": "This page does not exist"
+    }
+  }
+}

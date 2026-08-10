@@ -1,0 +1,114 @@
+{
+  "nav": {
+    "home": "Home",
+    "schedule": "Event History",
+    "library": "Legacy"
+  },
+  "footer": {
+    "brand": "© aecomet — 豪族会 GOZOKU"
+  },
+  "home": {
+    "eyebrow": "From Ibaraki — the land of sea and mountains",
+    "title": "Gozoku-kai",
+    "titleSub": "〜 GOZOKUKAI 〜",
+    "desc1": "Gathered here are those raised by Ibaraki's wild seas and the peaks of Mount Tsukuba.",
+    "desc2": "In the name of the clan, we forge bonds and carve history.",
+    "cta": "View Event History",
+    "sectionEn": "Clan Members",
+    "sectionJa": "Members",
+    "members": [
+      { "rank": "Chieftain", "note": "Head of the clan" },
+      { "rank": "Commoner", "note": "The knock-off yansu" },
+      { "rank": "Commoner", "note": "The counterfeit yansu" },
+      { "rank": "Commoner", "note": "The original yansu" }
+    ]
+  },
+  "schedule": {
+    "header": {
+      "en": "Event History",
+      "ja": "開催履歴",
+      "sub": "豪族の集い",
+      "subEn": "Gathering of the clan"
+    },
+    "events": [
+      {
+        "title": "K.K's Celebrate Party",
+        "place": "Chapel & Wedding Restaurant Baum (1-13-5 Ninomiya, Tsukuba, Ibaraki 305-0051)"
+      },
+      { "title": "Lab drinking party", "place": "Warayaki Ryoma Shoten, Shinbashi Station Front" },
+      { "title": "Gozoku-kai: H.I's reiatsu has vanished...?", "place": "Yakiniku Kokokara, Ueno" },
+      { "title": "Gozoku-kai: H.I works a holiday, again", "place": "Shimonsen, Shinagawa" },
+      { "title": "Gozoku-kai: H.I works a holiday", "place": "Gyoza Mania, Shinagawa Main Store" },
+      { "title": "Gozoku-kai — at the lab", "place": "Seseragi o Kikinagara, Shinagawa Station Front" },
+      { "title": "Summer Gozoku-kai", "place": "Shikisai, Shinagawa Konan Exit" },
+      { "title": "Gozoku-kai @ Hitachi", "place": "Toriden Kamameshi & Kushiyaki, Hitachi Taga" },
+      { "title": "Gozoku-kai", "place": "Gonnosuke, Yokohama West Exit" },
+      { "title": "Gozoku-kai is back, 2021", "place": "Rakuzo Utage (all-private rooms), Yaesu" },
+      { "title": "Gozoku-kai", "place": "Online" },
+      { "title": "Gozoku-kai", "place": "Unknown" },
+      { "title": "Gozoku-kai", "place": "Unknown" },
+      { "title": "Mini Gozoku-kai", "place": "The Ikeda Residence" },
+      { "title": "Gozoku-kai: Winter Campaign", "place": "BARBARA market place 151, Shin-Marunouchi Building" },
+      { "title": "Gozoku-kai: Summer Campaign", "place": "Sumi no Butashowya, Shinbashi" },
+      { "title": "Mini Gozoku-kai", "place": "NIKU ROCK, Shinjuku West Exit" },
+      { "title": "Gozoku-kai", "place": "Minato Mirai" },
+      { "title": "Gozoku-kai", "place": "Unknown" }
+    ]
+  },
+  "library": {
+    "header": {
+      "en": "Legacy Archive",
+      "ja": "遺産",
+      "sub": "眠りし古の遺産達",
+      "subEn": "The slumbering legacies of old"
+    },
+    "intro": "Here sleeps the golden age of the Gozoku-kai. Forgotten records and memories linger in quiet stillness.",
+    "gozokuText": "The Summer Gozoku-kai opens this year!",
+    "legacy": [
+      {
+        "season": "Summer",
+        "title": "Natsumode — The Road to the Summer Gozoku-kai",
+        "note": "Walk toward the torii gate",
+        "links": [{ "label": "Experience the Summer Festival" }]
+      },
+      {
+        "season": "Spring",
+        "title": "Celebrate KK",
+        "note": "Celebration for KK",
+        "actionLabel": "Open the Record",
+        "links": [{ "label": "A Celebration for KK" }]
+      },
+      {
+        "season": "Spring",
+        "title": "The Ancient Gozoku-kai Website",
+        "note": "",
+        "links": [
+          { "label": "Archive: Gozoku-kai Home" },
+          { "label": "Archive: Gozoku-kai Legacy" },
+          { "label": "Archive: Gozoku-kai Event History" }
+        ]
+      },
+      {
+        "season": "Winter",
+        "title": "Gozoku-kai — Winter Record",
+        "note": "⚠ Please mind the volume.",
+        "links": []
+      },
+      {
+        "season": "Summer",
+        "title": "Gozoku-kai — Summer Record",
+        "note": "⚠ Please mind the volume.",
+        "actionLabel": "Open the Record",
+        "links": []
+      }
+    ]
+  },
+  "notFound": {
+    "header": {
+      "en": "Not found",
+      "ja": "存在しないページ",
+      "sub": "このページは存在しません",
+      "subEn": "This page does not exist"
+    }
+  }
+}

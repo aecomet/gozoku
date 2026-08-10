@@ -1,13 +1,17 @@
 <template>
   <div id="page-schedule" class="page">
-    <PageHeader num="02" en="Event History" ja="開催履歴" sub="豪族の集い" />
+    <PageHeader
+      num="02"
+      :en="t('schedule.header.en')"
+      :ja="t('schedule.header.ja')"
+      :sub="t('schedule.header.sub')"
+      :sub-en="t('schedule.header.subEn')"
+    />
     <div class="schedule-grid">
       <div v-for="event in events" :key="event.date" class="event-card">
         <p class="event-date">{{ event.date }}</p>
-        <p class="event-title">{{ event.title }}</p>
-        <p class="event-place" :class="{ online: event.place.includes('オンライン'), unknown: event.place === '不明' }">
-          ◎ {{ event.place }}
-        </p>
+        <p class="event-title">{{ t(event.titleKey) }}</p>
+        <p class="event-place" :class="{ online: event.online, unknown: event.unknown }">◎ {{ t(event.placeKey) }}</p>
       </div>
     </div>
     <div class="map-placeholder">
@@ -17,8 +21,8 @@
           <LMarker v-if="event.lat !== 0 && event.lng !== 0" :key="idx" :lat-lng="[event.lat, event.lng]"
             ><LPopup :options="popupOptions">
               <p>{{ event.date }}</p>
-              <p>{{ event.title }}</p>
-              <p>{{ event.place }}</p>
+              <p>{{ t(event.titleKey) }}</p>
+              <p>{{ t(event.placeKey) }}</p>
             </LPopup>
           </LMarker>
         </template>
@@ -32,8 +36,10 @@
 import BackgroundElements from '@/components/BackgroundElements.vue';
 import PageHeader from '@/components/PageHeader.vue';
 import { LMap, LMarker, LPopup, LTileLayer } from '@/libraries/leaflet.ts';
-import { ScheduleEvent } from '@/types/Schedule';
 import { onMounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const center = ref<[number, number]>([35.681236, 139.767125]);
 const zoom = ref(12);
@@ -41,86 +47,155 @@ const popupOptions = {
   minWidth: 300
 };
 
-const events: ScheduleEvent[] = [
+// titleKey / placeKey に翻訳キーを保持し、テンプレートで t() を適用する
+type LocalizedScheduleEvent = {
+  date: string;
+  titleKey: string;
+  placeKey: string;
+  lat: number;
+  lng: number;
+  online?: boolean;
+  unknown?: boolean;
+};
+
+const events: LocalizedScheduleEvent[] = [
   {
     date: '2026 — 04 — 04',
-    title: 'K.K の Celebrate Party',
-    place: 'チャペル&ウェディングレストラン バウム(〒305-0051 茨城県つくば市二の宮１丁目１３−５)',
+    titleKey: 'schedule.events.0.title',
+    placeKey: 'schedule.events.0.place',
     lat: 36.0697,
     lng: 140.1183
   },
   {
     date: '2025 — 12 — 06',
-    title: '研究室飲み会',
-    place: 'わらやき 龍馬商店 新橋駅前店',
+    titleKey: 'schedule.events.1.title',
+    placeKey: 'schedule.events.1.place',
     lat: 35.665508,
     lng: 139.757817
   },
   {
     date: '2025 — 10 — 25',
-    title: '豪族会 H.Iの霊圧が消えた...?',
-    place: '焼肉ここから 上野店',
+    titleKey: 'schedule.events.2.title',
+    placeKey: 'schedule.events.2.place',
     lat: 35.656963,
     lng: 139.694064
   },
   {
     date: '2025 — 01 — 18',
-    title: '豪族会 H.Iまたまた休日出勤の巻',
-    place: '四文銭 品川店',
+    titleKey: 'schedule.events.3.title',
+    placeKey: 'schedule.events.3.place',
     lat: 35.629001,
     lng: 139.742967
   },
   {
     date: '2024 — 09 — 07',
-    title: '豪族会 H.I休日出勤の巻',
-    place: '餃子マニア 品川本店',
+    titleKey: 'schedule.events.4.title',
+    placeKey: 'schedule.events.4.place',
     lat: 35.626815,
     lng: 139.737315
   },
   {
     date: '2023 — 12 — 02',
-    title: '豪族会 〜 研究室',
-    place: 'せせらぎを聴きながら 品川駅前店',
+    titleKey: 'schedule.events.5.title',
+    placeKey: 'schedule.events.5.place',
     lat: 35.628631,
     lng: 139.742403
   },
   {
     date: '2023 — 08 — 26',
-    title: '夏の豪族会',
-    place: '四季彩 -shikisai- 品川港南口店',
+    titleKey: 'schedule.events.6.title',
+    placeKey: 'schedule.events.6.place',
     lat: 35.628488,
     lng: 139.743209
   },
   {
     date: '2023 — 01 — 06 〜 07',
-    title: '豪族会＠日立',
-    place: '釜飯と串焼 とりでん 日立多賀店',
+    titleKey: 'schedule.events.7.title',
+    placeKey: 'schedule.events.7.place',
     lat: 36.557229,
     lng: 140.629611
   },
-  { date: '2022 — 07 — 17', title: '豪族会', place: '権之介 横浜西口店', lat: 35.467302, lng: 139.622143 },
+  {
+    date: '2022 — 07 — 17',
+    titleKey: 'schedule.events.8.title',
+    placeKey: 'schedule.events.8.place',
+    lat: 35.467302,
+    lng: 139.622143
+  },
   {
     date: '2021 — 12 — 11',
-    title: '帰ってきた豪族会2021',
-    place: '全席個室 楽蔵うたげ 八重洲店',
+    titleKey: 'schedule.events.9.title',
+    placeKey: 'schedule.events.9.place',
     lat: 35.680594,
     lng: 139.771139
   },
-  { date: '2021 — 06 — 11', title: '豪族会', place: 'オンライン', lat: 0, lng: 0 },
-  { date: '2020 — 12 — 30', title: '豪族会', place: '不明', lat: 0, lng: 0 },
-  { date: '2020 — 08 — 14', title: '豪族会', place: '不明', lat: 0, lng: 0 },
-  { date: '2020 — 03 — 14', title: 'プチ豪族会', place: '池田別邸', lat: 0, lng: 0 },
+  {
+    date: '2021 — 06 — 11',
+    titleKey: 'schedule.events.10.title',
+    placeKey: 'schedule.events.10.place',
+    lat: 0,
+    lng: 0,
+    online: true
+  },
+  {
+    date: '2020 — 12 — 30',
+    titleKey: 'schedule.events.11.title',
+    placeKey: 'schedule.events.11.place',
+    lat: 0,
+    lng: 0,
+    unknown: true
+  },
+  {
+    date: '2020 — 08 — 14',
+    titleKey: 'schedule.events.12.title',
+    placeKey: 'schedule.events.12.place',
+    lat: 0,
+    lng: 0,
+    unknown: true
+  },
+  {
+    date: '2020 — 03 — 14',
+    titleKey: 'schedule.events.13.title',
+    placeKey: 'schedule.events.13.place',
+    lat: 0,
+    lng: 0
+  },
   {
     date: '2019 — 12 — 15',
-    title: '豪族会 冬の陣',
-    place: 'BARBARA market place 151 新丸ビル店',
+    titleKey: 'schedule.events.14.title',
+    placeKey: 'schedule.events.14.place',
     lat: 35.682984,
     lng: 139.764269
   },
-  { date: '2019 — 08 — 31', title: '豪族会 夏の陣', place: '炭の豚笑屋 新橋店', lat: 35.66522, lng: 139.757289 },
-  { date: '2019 — 08 — 17', title: 'プチ豪族会', place: 'NIKU ROCK 新宿西口店', lat: 35.695356, lng: 139.697894 },
-  { date: '2018 — 12 — 29', title: '豪族会', place: 'みなとみらい', lat: 35.459904, lng: 139.634146 },
-  { date: '2018 — 07 — 20 〜 21', title: '豪族会', place: '不明', lat: 0, lng: 0 }
+  {
+    date: '2019 — 08 — 31',
+    titleKey: 'schedule.events.15.title',
+    placeKey: 'schedule.events.15.place',
+    lat: 35.66522,
+    lng: 139.757289
+  },
+  {
+    date: '2019 — 08 — 17',
+    titleKey: 'schedule.events.16.title',
+    placeKey: 'schedule.events.16.place',
+    lat: 35.695356,
+    lng: 139.697894
+  },
+  {
+    date: '2018 — 12 — 29',
+    titleKey: 'schedule.events.17.title',
+    placeKey: 'schedule.events.17.place',
+    lat: 35.459904,
+    lng: 139.634146
+  },
+  {
+    date: '2018 — 07 — 20 〜 21',
+    titleKey: 'schedule.events.18.title',
+    placeKey: 'schedule.events.18.place',
+    lat: 0,
+    lng: 0,
+    unknown: true
+  }
 ];
 
 onMounted(() => {});

@@ -145,13 +145,45 @@
   </head>
 
   <body>
-    <main class="not-found" aria-labelledby="not-found-title">
+    <main class="not-found" aria-labelledby="not-found-title-ja">
       <span class="code" aria-hidden="true">404</span>
-      <h1 id="not-found-title">ページが見つかりません</h1>
-      <p>URLが変更されたか、削除された可能性があります。<br />トップページから再度アクセスしてください。</p>
-      <div class="actions">
-        <a class="button" href="https://aecomet.github.io/gozoku/">トップページへ戻る</a>
+      <div class="lang-ja">
+        <h1 id="not-found-title-ja">ページが見つかりません</h1>
+        <p>URLが変更されたか、削除された可能性があります。<br />トップページから再度アクセスしてください。</p>
+        <div class="actions">
+          <a class="button" href="https://aecomet.github.io/gozoku/">トップページへ戻る</a>
+        </div>
+      </div>
+      <div class="lang-en" hidden>
+        <h1 id="not-found-title-en">Page not found</h1>
+        <p>The URL may have been moved or deleted.<br />Please head back to the homepage and try again.</p>
+        <div class="actions">
+          <a class="button" href="https://aecomet.github.io/gozoku/">Back to Homepage</a>
+        </div>
       </div>
     </main>
+    <script>
+      (function () {
+        var lang = 'ja';
+        try {
+          lang = localStorage.getItem('locale') === 'en' ? 'en' : 'ja';
+        } catch (e) {
+          // localStorage が使えない環境では日本語のまま
+        }
+        document.documentElement.lang = lang;
+        var main = document.querySelector('.not-found');
+        var ja = document.querySelector('.lang-ja');
+        var en = document.querySelector('.lang-en');
+        if (lang === 'en') {
+          en.hidden = false;
+          ja.hidden = true;
+          main.setAttribute('aria-labelledby', 'not-found-title-en');
+        } else {
+          en.hidden = true;
+          ja.hidden = false;
+          main.setAttribute('aria-labelledby', 'not-found-title-ja');
+        }
+      })();
+    </script>
   </body>
 </html>
