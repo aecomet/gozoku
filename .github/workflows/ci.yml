@@ -27,6 +27,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
       - run: pnpm build
+      - name: Build Docker image
+        run: docker build -t app:ci .
 
   e2e:
     runs-on: ubuntu-latest
