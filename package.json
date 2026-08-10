@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --port 4173 --strictPort",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run"
@@ -14,24 +14,26 @@
   "author": "aecomet",
   "license": "MIT",
   "dependencies": {
-    "@maxel01/vue-leaflet": "1.0.0-beta.7",
+    "@maxel01/vue-leaflet": "1.0.0-beta.8",
     "leaflet": "2.0.0-alpha.1",
-    "vue": "^3.5.39",
-    "vue-router": "^5.1.0"
+    "vue": "^3.5.41",
+    "vue-router": "^5.2.0"
   },
   "devDependencies": {
-    "@types/leaflet": "^1.9.21",
-    "@vitejs/plugin-vue": "^6.0.7",
+    "@playwright/test": "^1.62.1",
+    "@types/leaflet": "^1.9.22",
+    "@vitejs/plugin-vue": "^6.0.8",
     "@vue/test-utils": "^2.4.11",
-    "jsdom": "^29.1.1",
-    "prettier": "^3.9.5",
-    "sass": "^1.101.0",
-    "typescript": "^6.0.3",
-    "vite": "^8.1.4",
+    "jsdom": "^30.0.1",
+    "less": "^4.8.1",
+    "prettier": "^3.9.6",
+    "sass": "^1.102.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.1",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-vuetify": "^2.1.3",
     "vite-ssg": "^28.3.0",
     "vitest": "^4.1.10",
-    "vue-tsc": "^3.3.7"
+    "vue-tsc": "^3.3.9"
   }
 }
