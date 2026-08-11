@@ -16,12 +16,14 @@
   <canvas id="wave-canvas" ref="waveCanvas" width="1920" height="220"></canvas>
 
   <!-- 縦書き装飾 -->
-  <div class="vert-deco">茨城 — 豪族会 — GOZOKU</div>
+  <div class="vert-deco">{{ t('home.vertDeco') }}</div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const waveCanvas = ref<HTMLCanvasElement | null>(null);
 let animationId: number | null = null;
 

@@ -1,18 +1,24 @@
 <template>
   <div id="page-library" class="page">
-    <PageHeader num="03" en="Legacy Archive" ja="遺産" sub="眠りし古の遺産達" />
+    <PageHeader
+      num="03"
+      :en="t('library.header.en')"
+      :ja="t('library.header.ja')"
+      :sub="t('library.header.sub')"
+      :sub-en="t('library.header.subEn')"
+    />
     <div class="legacy-intro">
-      <p>ここに眠るのは、豪族会の古き良き時代。忘れ去られた記録と記憶が、静かに息づいている。</p>
+      <p>{{ t('library.intro') }}</p>
     </div>
     <div class="legacy-list">
       <div class="legacy-item" v-for="item in legacyList" :key="item.year + item.season + item.title">
         <div class="legacy-era">
           <p class="legacy-year">{{ item.year }}</p>
-          <p class="legacy-season">{{ item.season }}</p>
+          <p class="legacy-season">{{ t(item.season) }}</p>
         </div>
         <div class="legacy-content">
-          <p class="legacy-title">{{ item.title }}</p>
-          <p class="legacy-note">{{ item.note }}</p>
+          <p class="legacy-title">{{ t(item.title) }}</p>
+          <p class="legacy-note">{{ t(item.note) }}</p>
 
           <!-- 動画 -->
           <video controls v-if="item.type === 'video'" class="legacy-video-frame" volume="0.3">
@@ -21,7 +27,7 @@
           <!-- 音楽 -->
           <div v-else-if="item.type === 'music'">
             <button class="legacy-btn" @click.prevent="item.event" :disabled="buttonDisabled">
-              {{ item.actionLabel }}
+              {{ t(item.actionLabel ?? '') }}
             </button>
 
             <p class="king-text"></p>
@@ -29,8 +35,8 @@
           <!-- 画像 -->
           <div v-else-if="item.type === 'image'" class="legacy-image-list">
             <figure v-for="(link, idx) in item.links" :key="idx" class="legacy-image-figure">
-              <img :src="link.url" :alt="link.label" class="legacy-image" />
-              <figcaption class="legacy-caption">{{ link.label }}</figcaption>
+              <img :src="link.url" :alt="t(link.label)" class="legacy-image" />
+              <figcaption class="legacy-caption">{{ t(link.label) }}</figcaption>
             </figure>
           </div>
 
@@ -44,7 +50,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              {{ link.label }}
+              {{ t(link.label) }}
             </a>
           </div>
         </div>
@@ -64,75 +70,78 @@ import PageHeader from '@/components/PageHeader.vue';
 import { useAudioPlayer } from '@/libraries/useAudioPlayer';
 import { LegacyItem } from '@/types/Library';
 import { onBeforeMount, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const { init, playSound, stopSound, sleep } = useAudioPlayer();
-const GOZOKU_TEXT: string = '夏の豪族回、今年も開幕決定!';
 const buttonDisabled = ref(false);
 
+// 言語依存の文字列（season / title / note / actionLabel / link.label）は翻訳キーを保持し、テンプレートで t() を適用する
 const legacyList: LegacyItem[] = [
   {
     year: '2026',
-    season: '夏',
-    title: '夏詣で — 夏の豪族会への道',
-    note: '鳥居を目指して歩こう',
+    season: 'library.legacy.0.season',
+    title: 'library.legacy.0.title',
+    note: 'library.legacy.0.note',
     type: 'link',
     links: [
       {
         url: 'https://aecomet.github.io/gozoku/summer-2026/',
-        label: '夏の祭りを体験する'
+        label: 'library.legacy.0.links.0.label'
       }
     ]
   },
   {
     year: '2026',
-    season: '春',
-    title: 'Celebrate KK',
-    note: 'Clebration for KK',
+    season: 'library.legacy.1.season',
+    title: 'library.legacy.1.title',
+    note: 'library.legacy.1.note',
     type: 'link',
-    actionLabel: '記録を開く',
+    actionLabel: 'library.legacy.1.actionLabel',
     links: [
       {
         url: 'https://aecomet.github.io/celebrate-kk/',
-        label: 'KKを祝う会'
+        label: 'library.legacy.1.links.0.label'
       }
     ]
   },
   {
     year: '2026',
-    season: '春',
-    title: '古の豪族会サイト',
-    note: '',
+    season: 'library.legacy.2.season',
+    title: 'library.legacy.2.title',
+    note: 'library.legacy.2.note',
     type: 'image',
     links: [
       {
         url: archiveGozokuHome,
-        label: 'アーカイブ 豪族会ホーム'
+        label: 'library.legacy.2.links.0.label'
       },
       {
         url: archiveGozokuLibrary,
-        label: 'アーカイブ 豪族会遺産'
+        label: 'library.legacy.2.links.1.label'
       },
       {
         url: archiveGozokuSchedule,
-        label: 'アーカイブ 豪族会開催履歴'
+        label: 'library.legacy.2.links.2.label'
       }
     ]
   },
   {
     year: '2022',
-    season: '冬',
-    title: '豪族会 — 冬の記録',
-    note: '⚠ 音量に注意してください。',
+    season: 'library.legacy.3.season',
+    title: 'library.legacy.3.title',
+    note: 'library.legacy.3.note',
     type: 'video',
     links: []
   },
   {
     year: '2022',
-    season: '夏',
-    title: '豪族会 — 夏の記録',
-    note: '⚠ 音量に注意してください。',
+    season: 'library.legacy.4.season',
+    title: 'library.legacy.4.title',
+    note: 'library.legacy.4.note',
     type: 'music',
-    actionLabel: '記録を開く',
+    actionLabel: 'library.legacy.4.actionLabel',
     event: async () => {
       if (buttonDisabled.value) return;
 
@@ -141,14 +150,15 @@ const legacyList: LegacyItem[] = [
       if (!kingText) return;
       kingText.innerHTML = '';
       kingText.classList.add('single-word');
-      // 音とともに一文字ずつ表示
+      // クリック時点の言語で文言を取得し、音とともに一文字ずつ表示
+      const gozokuText = t('library.gozokuText');
       await playSound('se', 0.3, true);
-      for (let i = 0; i < GOZOKU_TEXT.length; i++) {
-        kingText.innerHTML = GOZOKU_TEXT[i];
+      for (let i = 0; i < gozokuText.length; i++) {
+        kingText.innerHTML = gozokuText[i];
         await sleep(300);
       }
       // 全文表示
-      kingText.innerHTML = GOZOKU_TEXT;
+      kingText.innerHTML = gozokuText;
       kingText.classList.remove('single-word');
       kingText.classList.add('all-words');
       await playSound('bgm', 0.3);

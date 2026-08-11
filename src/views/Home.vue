@@ -4,34 +4,34 @@
       <!-- Kamon badge -->
       <ClanBadge></ClanBadge>
 
-      <p class="hero-eyebrow">茨城 — 海と山の地より</p>
+      <p class="hero-eyebrow">{{ t('home.eyebrow') }}</p>
       <h1 class="hero-title">
-        豪族会
-        <span class="sub">〜 GOZOKUKAI 〜</span>
+        {{ t('home.title') }}
+        <span class="sub">{{ t('home.titleSub') }}</span>
       </h1>
       <div class="brush-rule"></div>
       <p class="hero-desc">
-        茨城の荒海と筑波の山嶺に育まれし者どもが集う。<br />
-        豪族の名の下、縁を結び、歴史を刻む。
+        {{ t('home.desc1') }}<br />
+        {{ t('home.desc2') }}
       </p>
       <div class="hero-cta">
-        <button class="btn-clan" @click="go('/schedule')">開催履歴を見る</button>
+        <button class="btn-clan" @click="go('/schedule')">{{ t('home.cta') }}</button>
       </div>
     </section>
 
     <!-- Members -->
     <div class="members-section">
       <div class="section-header">
-        <p class="section-en">Clan Members</p>
-        <h2 class="section-ja">メンバー</h2>
+        <p class="section-en">{{ locale === 'ja' ? t('home.sectionEn') : t('home.sectionJa') }}</p>
+        <h2 class="section-ja">{{ locale === 'ja' ? t('home.sectionJa') : t('home.sectionEn') }}</h2>
       </div>
       <div class="member-list">
         <div class="member-row" v-for="(member, idx) in members" :key="member.id">
-          <div class="member-rank" :class="{ main: idx === 0 }">{{ member.rank }}</div>
+          <div class="member-rank" :class="{ main: idx === 0 }">{{ t(member.rank) }}</div>
           <div class="member-avatar">{{ member.initial }}</div>
           <div class="member-info">
             <p class="member-name">{{ member.name }}</p>
-            <p class="member-nickname">— {{ member.note }}</p>
+            <p class="member-nickname">— {{ t(member.note) }}</p>
           </div>
           <div class="member-num">{{ member.num }}</div>
         </div>
@@ -44,12 +44,16 @@
 import ClanBadge from '@/components/ClanBadge.vue';
 import { go } from '@/libraries/router';
 import { Member } from '@/types/Member';
+import { useI18n } from 'vue-i18n';
 
+const { t, locale } = useI18n();
+
+// rank / note には翻訳キーを保持し、テンプレートで t() を適用する
 const members: Member[] = [
-  { id: 1, name: 'Y.H', rank: '豪族', initial: 'Y', note: '筆頭豪族', num: '01' },
-  { id: 2, name: 'H.I', rank: '平民', initial: 'H', note: 'パチモンのやんす', num: '02' },
-  { id: 3, name: 'T.O', rank: '平民', initial: 'T', note: 'やんすの偽物', num: '03' },
-  { id: 4, name: 'K.K', rank: '平民', initial: 'K', note: '元祖 やんす', num: '04' }
+  { id: 1, name: 'Y.H', rank: 'home.members.0.rank', initial: 'Y', note: 'home.members.0.note', num: '01' },
+  { id: 2, name: 'H.I', rank: 'home.members.1.rank', initial: 'H', note: 'home.members.1.note', num: '02' },
+  { id: 3, name: 'T.O', rank: 'home.members.2.rank', initial: 'T', note: 'home.members.2.note', num: '03' },
+  { id: 4, name: 'K.K', rank: 'home.members.3.rank', initial: 'K', note: 'home.members.3.note', num: '04' }
 ];
 </script>
 

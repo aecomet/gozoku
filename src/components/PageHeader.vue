@@ -2,21 +2,31 @@
   <div class="page-head">
     <div class="page-head-num">{{ num }}</div>
     <div class="page-head-right">
-      <p class="section-en">{{ en }}</p>
+      <p class="section-en">{{ locale === 'ja' ? en : ja }}</p>
       <h2 class="section-ja">
-        {{ ja }}<small>{{ sub }}</small>
+        {{ locale === 'ja' ? ja : en }}<small v-if="displaySub">{{ displaySub }}</small>
       </h2>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  num: string;
-  en: string;
-  ja: string;
-  sub: string;
-}>();
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const props = withDefaults(
+  defineProps<{
+    num: string;
+    en: string;
+    ja: string;
+    sub: string;
+    subEn?: string;
+  }>(),
+  { subEn: '' }
+);
+
+const { locale } = useI18n();
+const displaySub = computed(() => (locale.value === 'ja' ? props.sub : props.subEn));
 </script>
 
 <style scoped>

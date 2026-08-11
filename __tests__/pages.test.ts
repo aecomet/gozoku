@@ -5,6 +5,7 @@ import Home from '../src/views/Home.vue';
 import Library from '../src/views/Library.vue';
 import NotFound from '../src/views/NotFound.vue';
 import Schedule from '../src/views/Schedule.vue';
+import { i18n } from '../src/plugins/i18n.ts';
 
 vi.mock('@/libraries/useAudioPlayer', () => ({
   useAudioPlayer: () => ({
@@ -60,7 +61,7 @@ describe('Home', () => {
     await router.isReady();
 
     const wrapper = mount(Home, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     expect(wrapper.find('.hero').exists()).toBe(true);
@@ -75,7 +76,7 @@ describe('Home', () => {
     await router.isReady();
 
     const wrapper = mount(Home, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     const btn = wrapper.find('.btn-clan');
@@ -89,7 +90,7 @@ describe('Home', () => {
     await router.isReady();
 
     const wrapper = mount(Home, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     const memberRows = wrapper.findAll('.member-row');
@@ -111,7 +112,7 @@ describe('Home', () => {
     await router.isReady();
 
     const wrapper = mount(Home, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     const firstRank = wrapper.find('.member-rank');
@@ -124,7 +125,7 @@ describe('Home', () => {
     await router.isReady();
 
     const wrapper = mount(Home, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     expect(wrapper.text()).toContain('01');
@@ -141,7 +142,7 @@ describe('NotFound', () => {
     await router.isReady();
 
     const wrapper = mount(NotFound, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     expect(wrapper.find('#page-not-found').exists()).toBe(true);
@@ -162,7 +163,7 @@ describe('Schedule', () => {
     await router.isReady();
 
     const wrapper = mount(Schedule, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     expect(wrapper.find('#page-schedule').exists()).toBe(true);
@@ -176,7 +177,7 @@ describe('Schedule', () => {
     await router.isReady();
 
     const wrapper = mount(Schedule, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     const eventCards = wrapper.findAll('.event-card');
@@ -189,7 +190,7 @@ describe('Schedule', () => {
     await router.isReady();
 
     const wrapper = mount(Schedule, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     expect(wrapper.text()).toContain('2026 — 04 — 04');
@@ -203,7 +204,7 @@ describe('Schedule', () => {
     await router.isReady();
 
     const wrapper = mount(Schedule, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     const onlinePlaces = wrapper.findAll('.event-place.online');
@@ -216,7 +217,7 @@ describe('Schedule', () => {
     await router.isReady();
 
     const wrapper = mount(Schedule, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     const unknownPlaces = wrapper.findAll('.event-place.unknown');
@@ -229,7 +230,7 @@ describe('Schedule', () => {
     await router.isReady();
 
     const wrapper = mount(Schedule, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     expect(wrapper.find('.map-placeholder').exists()).toBe(true);
@@ -247,7 +248,7 @@ describe('Library', () => {
     await router.isReady();
 
     const wrapper = mount(Library, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     expect(wrapper.find('#page-library').exists()).toBe(true);
@@ -261,7 +262,7 @@ describe('Library', () => {
     await router.isReady();
 
     const wrapper = mount(Library, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     expect(wrapper.text()).toContain('ここに眠るのは、豪族会の古き良き時代');
@@ -273,7 +274,7 @@ describe('Library', () => {
     await router.isReady();
 
     const wrapper = mount(Library, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     const legacyItems = wrapper.findAll('.legacy-item');
@@ -286,7 +287,7 @@ describe('Library', () => {
     await router.isReady();
 
     const wrapper = mount(Library, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     expect(wrapper.text()).toContain('夏詣で — 夏の豪族会への道');
@@ -302,7 +303,7 @@ describe('Library', () => {
     await router.isReady();
 
     const wrapper = mount(Library, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     const links = wrapper.findAll('.legacy-link');
@@ -316,7 +317,7 @@ describe('Library', () => {
     await router.isReady();
 
     const wrapper = mount(Library, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     const videos = wrapper.findAll('video');
@@ -329,7 +330,7 @@ describe('Library', () => {
     await router.isReady();
 
     const wrapper = mount(Library, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     const images = wrapper.findAll('.legacy-image');
@@ -342,7 +343,7 @@ describe('Library', () => {
     await router.isReady();
 
     const wrapper = mount(Library, {
-      global: { plugins: [router] }
+      global: { plugins: [router, i18n] }
     });
 
     const musicBtn = wrapper.find('.legacy-btn');
