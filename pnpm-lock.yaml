@@ -22,7 +22,7 @@ importers:
         version: 11.4.8(vue@3.5.41(typescript@7.0.2))
       vue-router:
         specifier: ^5.2.0
-        version: 5.2.0(@vue/compiler-sfc@3.5.41)(rolldown@1.2.3)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))
+        version: 5.2.0(@vue/compiler-sfc@3.5.41)(rolldown@1.2.3)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))
     devDependencies:
       '@playwright/test':
         specifier: ^1.62.1
@@ -32,7 +32,7 @@ importers:
         version: 1.9.22
       '@vitejs/plugin-vue':
         specifier: ^6.0.8
-        version: 6.0.8(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))
+        version: 6.0.8(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))
       '@vue/test-utils':
         specifier: ^2.4.11
         version: 2.4.11(@vue/compiler-dom@3.5.41)(@vue/server-renderer@3.5.41)(vue@3.5.41(typescript@7.0.2))
@@ -40,8 +40,8 @@ importers:
         specifier: ^30.0.1
         version: 30.0.1
       less:
-        specifier: ^4.8.1
-        version: 4.8.1(supports-color@7.2.0)
+        specifier: ^4.9.0
+        version: 4.9.0(supports-color@7.2.0)
       oxfmt:
         specifier: ^0.62.0
         version: 0.62.0
@@ -53,19 +53,19 @@ importers:
         version: 7.0.2
       vite:
         specifier: ^8.2.1
-        version: 8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
+        version: 8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
       vite-plugin-compression:
         specifier: ^0.5.1
-        version: 0.5.1(supports-color@7.2.0)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))
+        version: 0.5.1(supports-color@7.2.0)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))
       vite-plugin-vuetify:
         specifier: ^2.1.3
-        version: 2.1.3(supports-color@7.2.0)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))(vuetify@4.0.2)
+        version: 2.1.3(supports-color@7.2.0)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))(vuetify@4.0.2)
       vite-ssg:
         specifier: ^28.3.0
-        version: 28.3.0(prettier@3.9.6)(supports-color@7.2.0)(unhead@2.1.17)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue-router@5.2.0(@vue/compiler-sfc@3.5.41)(rolldown@1.2.3)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2))
+        version: 28.3.0(prettier@3.9.6)(supports-color@7.2.0)(unhead@2.1.17)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue-router@5.2.0(@vue/compiler-sfc@3.5.41)(rolldown@1.2.3)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2))
       vitest:
         specifier: ^4.1.10
-        version: 4.1.10(jsdom@30.0.1)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))
+        version: 4.1.10(jsdom@30.0.1)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))
       vue-tsc:
         specifier: ^3.3.9
         version: 3.3.9(typescript@7.0.2)
@@ -736,11 +736,6 @@ packages:
 
   '@volar/typescript@2.4.28':
     resolution: {integrity: sha512-Ja6yvWrbis2QtN4ClAKreeUZPVYMARDYZl9LMEv1iQ1QdepB6wn0jTRxA9MftYmYa4DQ4k/DaSZpFPUfxl8giw==}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
 
   '@vue-macros/common@3.1.4':
     resolution: {integrity: sha512-/5Fv+6DgIcM9ajY05ZmKBv+LMX1M9A0X+IUwDRVdt67ciw8OV9bvG2r34p3RiEadlsQybjhKPRKNXDC8Bp23cw==}
@@ -1171,8 +1166,8 @@ packages:
   leaflet@2.0.0-alpha.1:
     resolution: {integrity: sha512-2EJU27z/wljOgQCyybRkfrm5Xc3uy6huKehh0UAPsrAdwnSMxaplsqCl9cXPAuDm6D7uL6PCznYMDVIsaAdSdA==}
 
-  less@4.8.1:
-    resolution: {integrity: sha512-jQ3lRIo1aUtiWVYXZ7mk4+V4BjCGswF3IxTLJ+4RUta8ZiHh8lhkig2G8dya2eCcyR1dYUvzuV46EkJN8PSwww==}
+  less@4.9.0:
+    resolution: {integrity: sha512-umRhrCH7fCi8Uj2RcwKjJdvUORTjeWqkdKx0LbcZvjIwsAVsnIAGcxHaqowPeBFBjQuWOeC/bve0AlpFzF/+SQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -1417,8 +1412,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  probe-image-size@7.3.0:
-    resolution: {integrity: sha512-7CaDeBwiAbh6ohXsvLbAZhO7wzsZAmaevfxe39qvCwRh8LyaZfDlBGGLU1CCTgrTLtCOdwBBhjOrIHaIIimHfQ==}
+  probe-image-size@7.4.0:
+    resolution: {integrity: sha512-cdEprVtZxV+awMde9X+4jILBFYh4CARxVrQaMl4wY4YcPWbul9jntXrIW95NInBDyJwcVUP3U0T6yukN8rMBaQ==}
 
   proto-list@1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
@@ -1458,8 +1453,8 @@ packages:
     engines: {node: '>=20.19.0'}
     hasBin: true
 
-  sax@1.6.0:
-    resolution: {integrity: sha512-6R3J5M4AcbtLUdZmRv2SygeVaM7IhrLXu9BmnOGmmACak8fiUtOsYNWUS4uK7upbmHIBbLBeFeI//477BKLBzA==}
+  sax@1.6.1:
+    resolution: {integrity: sha512-42tBVwLWnaQvW5zc4HbZrTuWccECCZfBi92FDuwtqxasH+JbPB3/FOKb1m222K42R4WxuxzzMsTswfzgtSu64Q==}
     engines: {node: '>=11.0.0'}
 
   saxes@6.0.0:
@@ -2283,10 +2278,10 @@ snapshots:
       unhead: 2.1.17
       vue: 3.5.41(typescript@7.0.2)
 
-  '@vitejs/plugin-vue@6.0.8(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))':
+  '@vitejs/plugin-vue@6.0.8(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: 8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
+      vite: 8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
       vue: 3.5.41(typescript@7.0.2)
 
   '@vitest/expect@4.1.10':
@@ -2298,13 +2293,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.1
 
-  '@vitest/mocker@4.1.10(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))':
+  '@vitest/mocker@4.1.10(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))':
     dependencies:
       '@vitest/spy': 4.1.10
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
+      vite: 8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
 
   '@vitest/pretty-format@4.1.10':
     dependencies:
@@ -2336,13 +2331,11 @@ snapshots:
 
   '@volar/source-map@2.4.28': {}
 
-  '@volar/typescript@2.4.28(typescript@7.0.2)':
+  '@volar/typescript@2.4.28':
     dependencies:
       '@volar/language-core': 2.4.28
       path-browserify: 1.0.1
       vscode-uri: 3.1.0
-    optionalDependencies:
-      typescript: 7.0.2
 
   '@vue-macros/common@3.1.4(vue@3.5.41(typescript@7.0.2))':
     dependencies:
@@ -2817,7 +2810,7 @@ snapshots:
 
   leaflet@2.0.0-alpha.1: {}
 
-  less@4.8.1(supports-color@7.2.0):
+  less@4.9.0(supports-color@7.2.0):
     dependencies:
       copy-anything: 3.0.5
       parse-node-version: 1.0.1
@@ -2827,7 +2820,7 @@ snapshots:
       make-dir: 5.1.0
       mime: 1.6.0
       needle: 3.5.0
-      probe-image-size: 7.3.0(supports-color@7.2.0)
+      probe-image-size: 7.4.0(supports-color@7.2.0)
       source-map: 0.6.1
     transitivePeerDependencies:
       - supports-color
@@ -2940,7 +2933,7 @@ snapshots:
     dependencies:
       debug: 3.2.7(supports-color@7.2.0)
       iconv-lite: 0.4.24
-      sax: 1.6.0
+      sax: 1.6.1
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -2948,7 +2941,7 @@ snapshots:
   needle@3.5.0:
     dependencies:
       iconv-lite: 0.6.3
-      sax: 1.6.0
+      sax: 1.6.1
     optional: true
 
   no-case@3.0.4:
@@ -3055,7 +3048,7 @@ snapshots:
   prettier@3.9.6:
     optional: true
 
-  probe-image-size@7.3.0(supports-color@7.2.0):
+  probe-image-size@7.4.0(supports-color@7.2.0):
     dependencies:
       lodash.merge: 4.6.2
       needle: 2.9.1(supports-color@7.2.0)
@@ -3110,7 +3103,7 @@ snapshots:
     optionalDependencies:
       '@parcel/watcher': 2.6.0
 
-  sax@1.6.0:
+  sax@1.6.1:
     optional: true
 
   saxes@6.0.0:
@@ -3253,38 +3246,38 @@ snapshots:
       pathe: 2.0.3
       picomatch: 4.0.5
 
-  unplugin@3.3.0(rolldown@1.2.3)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)):
+  unplugin@3.3.0(rolldown@1.2.3)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       picomatch: 4.0.5
       webpack-virtual-modules: 0.6.2
     optionalDependencies:
       rolldown: 1.2.3
-      vite: 8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
+      vite: 8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
 
   upath@2.0.1: {}
 
-  vite-plugin-compression@0.5.1(supports-color@7.2.0)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)):
+  vite-plugin-compression@0.5.1(supports-color@7.2.0)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)):
     dependencies:
       chalk: 4.1.2
       debug: 4.4.3(supports-color@7.2.0)
       fs-extra: 10.1.0
-      vite: 8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
+      vite: 8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-vuetify@2.1.3(supports-color@7.2.0)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))(vuetify@4.0.2):
+  vite-plugin-vuetify@2.1.3(supports-color@7.2.0)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))(vuetify@4.0.2):
     dependencies:
       '@vuetify/loader-shared': 2.1.2(vue@3.5.41(typescript@7.0.2))(vuetify@4.0.2)
       debug: 4.4.3(supports-color@7.2.0)
       upath: 2.0.1
-      vite: 8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
+      vite: 8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
       vue: 3.5.41(typescript@7.0.2)
       vuetify: 4.0.2(typescript@7.0.2)(vite-plugin-vuetify@2.1.3)(vue@3.5.41(typescript@7.0.2))
     transitivePeerDependencies:
       - supports-color
 
-  vite-ssg@28.3.0(prettier@3.9.6)(supports-color@7.2.0)(unhead@2.1.17)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue-router@5.2.0(@vue/compiler-sfc@3.5.41)(rolldown@1.2.3)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)):
+  vite-ssg@28.3.0(prettier@3.9.6)(supports-color@7.2.0)(unhead@2.1.17)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue-router@5.2.0(@vue/compiler-sfc@3.5.41)(rolldown@1.2.3)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)):
     dependencies:
       '@unhead/dom': 2.1.17(unhead@2.1.17)
       '@unhead/vue': 2.1.17(vue@3.5.41(typescript@7.0.2))
@@ -3293,18 +3286,18 @@ snapshots:
       html-minifier-terser: 7.2.0
       html5parser: 2.0.2
       jsdom: 28.1.0(supports-color@7.2.0)
-      vite: 8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
+      vite: 8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
       vue: 3.5.41(typescript@7.0.2)
     optionalDependencies:
       prettier: 3.9.6
-      vue-router: 5.2.0(@vue/compiler-sfc@3.5.41)(rolldown@1.2.3)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))
+      vue-router: 5.2.0(@vue/compiler-sfc@3.5.41)(rolldown@1.2.3)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))
     transitivePeerDependencies:
       - '@noble/hashes'
       - canvas
       - supports-color
       - unhead
 
-  vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0):
+  vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
@@ -3313,15 +3306,15 @@ snapshots:
       tinyglobby: 0.2.17
     optionalDependencies:
       fsevents: 2.3.3
-      less: 4.8.1(supports-color@7.2.0)
+      less: 4.9.0(supports-color@7.2.0)
       sass: 1.102.0
       terser: 5.49.2
       yaml: 2.9.0
 
-  vitest@4.1.10(jsdom@30.0.1)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)):
+  vitest@4.1.10(jsdom@30.0.1)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)):
     dependencies:
       '@vitest/expect': 4.1.10
-      '@vitest/mocker': 4.1.10(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))
+      '@vitest/mocker': 4.1.10(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))
       '@vitest/pretty-format': 4.1.10
       '@vitest/runner': 4.1.10
       '@vitest/snapshot': 4.1.10
@@ -3338,7 +3331,7 @@ snapshots:
       tinyexec: 1.3.0
       tinyglobby: 0.2.17
       tinyrainbow: 3.1.1
-      vite: 8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
+      vite: 8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
       jsdom: 30.0.1
@@ -3357,7 +3350,7 @@ snapshots:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.41(typescript@7.0.2)
 
-  vue-router@5.2.0(@vue/compiler-sfc@3.5.41)(rolldown@1.2.3)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)):
+  vue-router@5.2.0(@vue/compiler-sfc@3.5.41)(rolldown@1.2.3)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)):
     dependencies:
       '@babel/generator': 8.0.0
       '@vue-macros/common': 3.1.4(vue@3.5.41(typescript@7.0.2))
@@ -3374,13 +3367,13 @@ snapshots:
       picomatch: 4.0.5
       scule: 1.3.0
       tinyglobby: 0.2.17
-      unplugin: 3.3.0(rolldown@1.2.3)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))
+      unplugin: 3.3.0(rolldown@1.2.3)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))
       unplugin-utils: 0.3.2
       vue: 3.5.41(typescript@7.0.2)
       yaml: 2.9.0
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.41
-      vite: 8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
+      vite: 8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0)
     transitivePeerDependencies:
       - '@farmfe/core'
       - '@rspack/core'
@@ -3393,7 +3386,7 @@ snapshots:
 
   vue-tsc@3.3.9(typescript@7.0.2):
     dependencies:
-      '@volar/typescript': 2.4.28(typescript@7.0.2)
+      '@volar/typescript': 2.4.28
       '@vue/language-core': 3.3.9
       typescript: 7.0.2
 
@@ -3412,7 +3405,7 @@ snapshots:
       vue: 3.5.41(typescript@7.0.2)
     optionalDependencies:
       typescript: 7.0.2
-      vite-plugin-vuetify: 2.1.3(supports-color@7.2.0)(vite@8.2.1(less@4.8.1(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))(vuetify@4.0.2)
+      vite-plugin-vuetify: 2.1.3(supports-color@7.2.0)(vite@8.2.1(less@4.9.0(supports-color@7.2.0))(sass@1.102.0)(terser@5.49.2)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2))(vuetify@4.0.2)
 
   w3c-xmlserializer@5.0.0:
     dependencies:
