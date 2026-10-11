@@ -2,3 +2,11 @@ allowBuilds:
   '@parcel/watcher': true
 minimumReleaseAgeExclude:
   - prettier@3.9.5
+  - '@intlify/core-base@11.4.14'
+  - '@intlify/devtools-types@11.4.14'
+  - '@intlify/message-compiler@11.4.14'
+  - '@intlify/shared@11.4.14'
+  - '@vitejs/plugin-vue@6.0.10'
+  - '@vue/language-core@3.3.13'
+  - vue-i18n@11.4.14
+  - vue-tsc@3.3.13
