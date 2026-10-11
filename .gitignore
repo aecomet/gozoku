@@ -46,4 +46,3 @@ build/
 test-results/
 playwright-report/
 
-.agent/
